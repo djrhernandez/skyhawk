@@ -1,0 +1,70 @@
+/* Simple grayscale function for better color refactoring */
+@function grayscale($rgb, $a) {
+	@return rgba($rgb,$rgb,$rgb,$a);
+}
+
+/* fonts: 
+   Cutive Mono      | Lato              | Montserrat
+   Raleway          | Red Hat Display   | Roboto
+   Rubik            | Sarabun           | Space Mono 
+   Source Code Pro  | Urbanist
+*/
+$font-global: 'Urbanist';
+$font-title: 'Red Hat Display';
+$font-subtext: 'Lato';
+
+// Background/Theme
+$background-size: 100% 100%;
+$background-gradient: linear-gradient(115deg, #960200, #CB462B, #DBB43D, #094074);
+$background-light: #eee;
+$background-dark: #222;
+$theme-color: #828282;
+$theme-color-active-txt: #323232;
+$theme-active-brightness: 0;
+
+/* Spacing */
+$full-space: 40px;
+$half-space: 20px;
+
+/* Font Colors/Sizing */
+$font-color-dark: #333;
+$font-color-light: #fff;
+$font-size--xs: 10px;
+$font-size--sm: 12px;
+$font-size--md: 16px;
+$font-size--lg: 24px;
+$font-size--xl: 32px;
+
+/* Navbar */
+$navbar-bg-color: grayscale(255,1);
+$navbar-title-color: #333;
+$navbar-logo-bg-color: #333;
+
+/* Main Menu */
+$menuHideDur: .25s;
+$menuShowDur: .5s;
+$menu-btn-off-color: #666666;
+$menu-btn-on-color: #777;
+
+/* Buttons */
+$btn-transition-dur: .25s;
+
+/* App Loaged */
+$app-loader-title-color: #fff;
+$app-loader-message-color: grayscale(150,1);
+$app-loader-bg-color: grayscale(0,.9);
+
+//---------------------------------------------------------------
+// UI ELEMENTS
+//---------------------------------------------------------------
+$color__site-bg: grayscale(30,1);
+$color__site-txt: grayscale(255,1);
+
+/* Time Picker */
+$color__time-picker-bg: grayscale(55,1);
+$color__time-picker-column-bg: $color__site-bg;
+$color__time-picker-cell-txt: grayscale(255,1);
+$color__time-picker-cell-hover-bg: grayscale(255,.05);
+$color__time-picker-cell-hover-txt: grayscale(255,1);
+$color__time-picker-cell-active-bg: $theme-color;
+$color__time-picker-cell-active-txt: grayscale(50,1);

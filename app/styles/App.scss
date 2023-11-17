@@ -1,0 +1,120 @@
+@import 'antd/dist/reset.css';
+@import '_vars';
+@import 'mixins';
+@import 'ui/_ui';
+
+html {
+	height: 100%;
+	width: 100%;
+	min-width: 370px;
+}
+
+body {
+	outline: none;
+	user-select: none;
+	font-family: $font-global;
+	word-break: break-word;
+}
+
+body.dragging * {
+	cursor: grabbing !important;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+*:focus, *:hover {
+	outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+	font-family: $font-title;
+}
+
+hr[class*="dark"], hr[class*="light"] {
+	border: 1px solid;
+	max-width: 30rem;
+	padding: 0;
+	margin: 1.5rem auto;
+	text-align: center;
+}
+
+hr[class*="dark"]::after, hr[class*="light"]::after {
+	display: inline-block;
+	position: relative;
+	top: -0.5em;
+	padding: 0rem 0.5rem;
+	font-family: 'Material Icons';
+	font-size: 2rem;
+	text-align: center;
+}
+
+hr[class*="light"] { border-color: #FFFFF0; }
+hr[class*="light"]::after {
+	color: #FFFFF0;
+	background-color:	#303037;
+}
+
+hr[class*="dark"] { border-color: #303037; }
+hr[class*="dark"]::after {
+	color: #303037;
+	background-color:	#FFFFF0;
+}
+
+/* star: e838, star_border: e83a, stars: e8d0 */
+hr[class*="star"]::after 	{ content: '\e83a'; }
+hr[class*="obj"]::after 	{ content: '\e869'; }
+hr[class*="code"]::after 	{ content: '\e86f'; }
+hr[class*="school"]::after 	{ content: '\e80c'; }
+hr[class*="subject"]::after { content: '\e8d2'; }
+hr[class*="work"]::after 	{ content: '\e8f9'; }
+hr[class*="hot"]::after 	{ content: '\e80e'; }
+hr[class*="poly"]::after 	{ content: '\e8ab'; }
+hr[class*="music"]::after 	{ content: '\e063'; }
+hr[class*="game"]::after 	{ content: '\e021'; }
+hr[class*="router"]::after 	{ content: '\e328'; }
+hr[class*="doc"]::after 	{ content: '\e548'; }
+hr[class*="device"]::after 	{ content: '\e1b1'; }
+
+// ---------------------------------------------------------------------------------
+// APP
+// ---------------------------------------------------------------------------------
+/*
+    We can always change the bg-size in _vars, but we'll have to research how to 
+	blend the top and bottom portion of the bg together so the gradient appears 
+	seamless.
+*/
+.App {
+	background: $background-gradient;
+	background-size: $background-size;   
+	@include animation('Gradient 10s linear infinite');
+}
+
+@include keyframes(Gradient) {
+    0% 		{ background-position: 0% 100% }
+    50% 	{ background-position: 50% 50% }
+    100% 	{ background-position: 100% 0% }
+}
+
+.scroll-to-top {
+	display: block;
+	position: fixed;
+	z-index: 1099;
+	bottom: 1rem;
+	right: 0.75rem;
+}
+
+.scroll-to-top a {
+	display: inherit;
+	width: 2.5rem;
+	height: 2.5rem;
+	text-align: center;
+	line-height: 3.35rem;
+	color: #F8F3F2;
+	background-color: #303037;
+	border: 1px solid rgba(128, 128, 128, 0.5);
+	border-radius: .5rem!important;
+	box-shadow: 0px 2px 2px 2px grayscale(0, 0.5);
+}

@@ -1,0 +1,143 @@
+.ant-picker-panel {
+	padding: 5px 10px !important;
+	border: none !important;
+
+	.ant-picker-header-view {
+		color: #fff;
+	}
+	.ant-picker-body {
+		color: #fff;
+	}
+
+	.ant-picker-header {
+		border: none;
+	}
+	.ant-picker-footer {
+		border: none !important;
+
+		.ant-picker-ranges {
+			padding: 0 !important;
+			.ant-picker-now-btn {
+				padding: 5px 10px;
+				background-color: transparent !important;
+				color: #fff !important;
+			}
+			.ant-picker-ok {
+				button {
+					background-color: transparent !important;
+					border: none !important;
+				}
+			}
+		}
+	}
+}
+
+.ant-picker-datetime-panel {
+	margin-bottom: 5px;
+	.ant-picker-time-panel {
+		border: none;
+	}
+}
+
+.ant-picker-date-panel {
+
+	.ant-picker-header {
+		button {
+			color: rgba(255,255,255,.5);
+
+			&:hover {
+				color: rgba(255,255,255,1);
+
+			}
+		}
+	}
+
+	.ant-picker-body {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.ant-picker-content {
+		min-height: 224px;
+		table {
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		th {
+			color: #fff;
+			background-color: $color__time-picker-column-bg
+		}
+		td {
+			background-color: $color__time-picker-column-bg;
+		}
+	}
+
+	.ant-picker-cell {
+		color: #333;
+		&:hover {
+			&:not(.ant-picker-cell-selected) {
+				.ant-picker-cell-inner {
+					background-color: rgba(255,255,255,.3) !important;
+				}
+			}
+		}
+	}
+	.ant-picker-cell-in-view {
+		color: rgba(255,255,255,.7);
+
+	}
+	.ant-picker-cell-selected {
+		.ant-picker-cell-inner {
+			background-color: $theme-color;
+		}
+	}
+	.ant-picker-cell-today {
+		.ant-picker-cell-inner {
+			border-color: $theme-color;
+		}
+	}
+}
+
+.ant-picker-panel-container {
+	background-color: $color__time-picker-bg !important;
+	box-shadow: 0px 2px 5px rgba(0,0,0,.5);
+}
+
+.ant-picker-time-panel-column {
+	background-color: $color__time-picker-column-bg !important;
+	border: none;
+	&:not(:first-child) {
+		border: none !important;
+		margin-left: 1px;
+	}
+	&:first-child {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	}
+	&:last-child {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+	> li {
+		&.ant-picker-time-panel-cell {
+			.ant-picker-time-panel-cell-inner {
+				color: $color__time-picker-cell-txt !important;
+			}
+
+			&:hover {
+				&:not(.ant-picker-time-panel-cell-selected) {
+					.ant-picker-time-panel-cell-inner {
+						background-color: $color__time-picker-cell-hover-bg !important;
+						color: $color__time-picker-cell-hover-txt !important;
+					}
+				}
+			}
+		}
+
+ 		&.ant-picker-time-panel-cell-selected {
+ 			.ant-picker-time-panel-cell-inner {
+ 				background-color: $color__time-picker-cell-active-bg !important;
+ 				color: $color__time-picker-cell-active-txt !important;
+ 			}
+ 		}
+ 	}
+}
