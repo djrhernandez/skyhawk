@@ -3,16 +3,6 @@
 	@return rgba($rgb,$rgb,$rgb,$a);
 }
 
-/* fonts: 
-   Cutive Mono      | Lato              | Montserrat
-   Raleway          | Red Hat Display   | Roboto
-   Rubik            | Sarabun           | Space Mono 
-   Source Code Pro  | Urbanist
-*/
-$font-global: 'Urbanist';
-$font-title: 'Red Hat Display';
-$font-subtext: 'Lato';
-
 // Background/Theme
 $background-size: 100% 100%;
 $background-gradient: linear-gradient(115deg, #960200, #CB462B, #DBB43D, #094074);

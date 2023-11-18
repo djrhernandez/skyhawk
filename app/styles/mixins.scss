@@ -31,6 +31,22 @@
     font-size: calculateRem($size);
   }
   
+  /* --- layouts -------------------------------------------------------------------
+  These mixins help with code readability since it can get very disruptive when 
+  implementing layout types like flexboxes and grids across many files.
+  Usage:
+  .some-component {
+    @include flex-center;
+    margin: auto;
+    ...
+  }
+  */
+  @mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /* --- breakpoints ---------------------------------------------------------------
   When Sass 3.2 was released some time ago, they made it possible to define names 
   for media queries, which makes the usage of them a lot cleaner. Instead of calling 

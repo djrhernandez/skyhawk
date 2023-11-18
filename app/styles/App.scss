@@ -1,7 +1,7 @@
 @import 'antd/dist/reset.css';
-@import '_vars';
 @import 'mixins';
 @import 'ui/_ui';
+@import 'ui/_vars';
 
 html {
 	height: 100%;
@@ -12,7 +12,6 @@ html {
 body {
 	outline: none;
 	user-select: none;
-	font-family: $font-global;
 	word-break: break-word;
 }
 
@@ -30,7 +29,6 @@ body.dragging * {
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
-	font-family: $font-title;
 }
 
 hr[class*="dark"], hr[class*="light"] {
