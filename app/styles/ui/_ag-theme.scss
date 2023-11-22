@@ -1,0 +1,16 @@
+@import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-alpine.css';
+
+.ag-theme-alpine {
+    // light theme params
+    // @include ag-theme-alpine();
+	height: 700px;
+}
+
+.dark-mode {
+    .ag-theme-alpine {
+        // dark theme params
+        // @include ag-theme-alpine-dark();
+    }
+    
+}
