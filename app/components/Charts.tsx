@@ -74,7 +74,7 @@ export const Charts = ({ data }, props) => {
 			{/* Displays the # of properties an owner possesses */}
 			<div className='chart-wrapper'>
 				<div className='chart-header'>
-					<h4 className='header small-important-header'>Owners/Property</h4>
+					<div className='header small-important-header'>Owners/Property</div>
 				</div>
 				<div className='data'>
 					<ResponsiveContainer width='100%' height={300}>
@@ -86,13 +86,18 @@ export const Charts = ({ data }, props) => {
 								type='category' 
 								dataKey='bucket'
 								label={{ value: 'Owner', position: 'bottom'}}
-								height={60}
 								tick={<CustomizedAxisTick/>}
 							/>
 							<YAxis
+								interval={0}
 								type='number'
+								fontSize={10}
 								domain={[0, dataMax => (dataMax + (25 - (dataMax % 25)))]}
-								label={{ value: '# of properties', angle: -90 }}
+								label={{ 
+									value: '# of properties', 
+									angle: -90,
+									dx: -20
+								}}
 							/>
 
 							<Bar dataKey="count" fill='#8884d8'/>
@@ -104,7 +109,7 @@ export const Charts = ({ data }, props) => {
 			{/* Displays the # of properties in a given borough */}
 			<div className='chart-wrapper'>
 				<div className='chart-header'>
-					<h4 className='header small-important-header'>Properties/Borough</h4>
+					<div className='header small-important-header'>Properties/Borough</div>
 				</div>
 				<div className='data'>
 					<ResponsiveContainer width='100%' height={300}>
@@ -119,8 +124,13 @@ export const Charts = ({ data }, props) => {
 							/>
 							<YAxis
 								type='number'
+								fontSize={10}
 								domain={[0, dataMax => (dataMax + (25 - (dataMax % 25)))]}
-								label={{ value: '# of properties', angle: -90 }}
+								label={{ 
+									value: '# of properties', 
+									angle: -90,
+									dx: -20
+								}}
 							/>
 
 							<Bar dataKey="count" fill='#000'/>

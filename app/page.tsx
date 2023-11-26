@@ -16,8 +16,7 @@ export default function AppPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState('')
   
-  // const [tableReady, setTableReady] = useState(false)
-  // Sets props common to all Columns
+  // Sets props common to all Columns in AG-Grid
   const defaultColDef = useMemo(() => {
     return {
       sortable: true,
@@ -27,8 +26,8 @@ export default function AppPage() {
   // Data fetch
   useEffect(() => {
     setIsLoading(true)
-
-    fetchApi('/resource/tjus-cn27.json', params).then((data) => {
+    fetchApi('/resource/tjus-cn27.json', params)
+    .then((data) => {
       setApiData(data)
     }).catch((error) => {
       setErrors(error)
