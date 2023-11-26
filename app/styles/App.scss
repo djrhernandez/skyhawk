@@ -1,9 +1,15 @@
 @import 'antd/dist/reset.css';
-@import 'mixins';
+@import 'ui/ag-theme';
+@import 'ui/mixins';
 @import 'ui/_ui';
 @import 'ui/_vars';
+@import 'Charts';
+@import 'Dashboard';
+@import 'Main';
+@import 'Navbar';
 
 html {
+	position: relative;
 	height: 100%;
 	width: 100%;
 }
@@ -30,60 +36,8 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
 
-hr[class*="dark"], hr[class*="light"] {
-	border: 1px solid;
-	max-width: 30rem;
-	padding: 0;
-	margin: 1.5rem auto;
-	text-align: center;
-}
-
-hr[class*="dark"]::after, hr[class*="light"]::after {
-	display: inline-block;
-	position: relative;
-	top: -0.5em;
-	padding: 0rem 0.5rem;
-	font-family: 'Material Icons';
-	font-size: 2rem;
-	text-align: center;
-}
-
-hr[class*="light"] { border-color: #FFFFF0; }
-hr[class*="light"]::after {
-	color: #FFFFF0;
-	background-color:	#303037;
-}
-
-hr[class*="dark"] { border-color: #303037; }
-hr[class*="dark"]::after {
-	color: #303037;
-	background-color:	#FFFFF0;
-}
-
-/* star: e838, star_border: e83a, stars: e8d0 */
-hr[class*="star"]::after 	{ content: '\e83a'; }
-hr[class*="obj"]::after 	{ content: '\e869'; }
-hr[class*="code"]::after 	{ content: '\e86f'; }
-hr[class*="school"]::after 	{ content: '\e80c'; }
-hr[class*="subject"]::after { content: '\e8d2'; }
-hr[class*="work"]::after 	{ content: '\e8f9'; }
-hr[class*="hot"]::after 	{ content: '\e80e'; }
-hr[class*="poly"]::after 	{ content: '\e8ab'; }
-hr[class*="music"]::after 	{ content: '\e063'; }
-hr[class*="game"]::after 	{ content: '\e021'; }
-hr[class*="router"]::after 	{ content: '\e328'; }
-hr[class*="doc"]::after 	{ content: '\e548'; }
-hr[class*="device"]::after 	{ content: '\e1b1'; }
-
-// ---------------------------------------------------------------------------------
-// APP
-// ---------------------------------------------------------------------------------
-/*
-    We can always change the bg-size in _vars, but we'll have to research how to 
-	blend the top and bottom portion of the bg together so the gradient appears 
-	seamless.
-*/
-.App {
+.app {
+	height: 100%;
 	background: $background-gradient;
 	background-size: $background-size;   
 	@include animation('Gradient 10s linear infinite');

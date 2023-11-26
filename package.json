@@ -40,6 +40,7 @@
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.43",
     "next": "14.0.0",
+    "next-themes": "^0.2.1",
     "percentile": "^1.6.0",
     "query-string": "^8.1.0",
     "react": "^18",

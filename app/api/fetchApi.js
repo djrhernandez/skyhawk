@@ -7,8 +7,7 @@ const headers = {
 export const dynamic = 'force-dynamic'
 
 const _url = (path, args) => {
-	let url = ``;
-	url += `${API_URL}/${path}?`;
+	let url = `${API_URL}/${path}?`;
 
 	for (let arg in args) {
 		url += `&${arg}=${args[arg]}`;
@@ -16,7 +15,7 @@ const _url = (path, args) => {
 	return url
 }
 
-export async function getApiData(path, args = {}) {
+export async function fetchApi(path, args = {}) {
   const response = await fetch(_url(path, args), {
     method: 'GET',
     headers: headers,

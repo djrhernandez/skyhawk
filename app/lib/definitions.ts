@@ -8,44 +8,41 @@ export const columnDefinitions = [
   {
       headerName: 'ID',
       field: 'parid',
-      resizable: false
+      width: 115,
+      cellStyle: { padding: 0 }
   },
   {
       headerName: 'Owner',
       field: 'owner_name',
-      resizable: true,
       filter: true,
       wrapText: true,
-      suppressSizeToFit: false
   },
   {
       headerName: 'Borough Info',
       children: [
           { headerName: 'Borough', field: 'borough' },
-          { headerName: 'Borough Code', field: 'borocode' }
+          { headerName: 'Borough Code', field: 'borocode', columnGroupShow: 'open' }
       ]
   },
   {
       headerName: 'Location Info',
       children: [
-          { headerName: 'Street No.', field: 'street_num' },
-          { headerName: 'Street Name', field: 'street_name' },
           {
               headerName: 'Street Address', 
               valueGetter: (params: { data: { street_num: string; street_name: string; }; }) => {
                   return params.data.street_num + ' ' + params.data.street_name;
               },
           },
-          { headerName: 'Postcode', field: 'postcode' },
-          { headerName: 'Lat', field: 'latitude' },
-          { headerName: 'Long', field: 'longitude' },
+          { headerName: 'Postcode', field: 'postcode', columnGroupShow: 'open' },
+          { headerName: 'Lat', field: 'latitude', columnGroupShow: 'open'  },
+          { headerName: 'Long', field: 'longitude', columnGroupShow: 'open' },
       ]
   },
   {
       headerName: 'Tax Info',
       children: [
           { headerName: 'Year', field: 'taxyear' },
-          { headerName: 'Class', field: 'taxclass' },
+          { headerName: 'Class', field: 'taxclass', columnGroupShow: 'open' },
           { headerName: 'Block #', field: 'block', columnGroupShow: 'open' },
           { headerName: 'Lot #', field: 'lot', columnGroupShow: 'open' },
           { headerName: 'Building Class', field: 'bldg_class', columnGroupShow: 'open' }, // Bldg Classification (ie Luxury/Boutique Hotel, Office/Retail Space, etc.)
@@ -56,11 +53,11 @@ export const columnDefinitions = [
   { 
       headerName: 'Census Info',
       children: [
-          { headerName: 'Census Tract', field: 'census_tract' },          // The geolocation of the property to which the surrounding populace is censused 
-          { headerName: 'Community Board', field: 'community_board' },
-          { headerName: 'Council District', field: 'council_district' },
-          { headerName: 'NTA', field: 'nta' },                            // Neighborhood Tabulation Area (meant for census)
-          { headerName: 'NTA Code', field: 'nta_code2' },                 // Code associated with the NTA a property possesses
+        { headerName: 'Community Board', field: 'community_board' },
+          { headerName: 'Census Tract', field: 'census_tract', columnGroupShow: 'open' }, // The geolocation of the property to which the surrounding populace is censused 
+          { headerName: 'Council District', field: 'council_district', columnGroupShow: 'open' },
+          { headerName: 'NTA', field: 'nta', columnGroupShow: 'open' },                   // Neighborhood Tabulation Area (meant for census)
+          { headerName: 'NTA Code', field: 'nta_code2', columnGroupShow: 'open' },        // Code associated with the NTA a property possesses
       ]
   }
 ]
@@ -72,92 +69,14 @@ export type User = {
   password: string;
 };
 
-export type Customer = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-};
-
 export type Hotel = {
-  id: number;
-  name: string;
+  parid: number;
+  owner_name: string;
   address: string;
-  zipcode: string;
-  owner: string;
+  postcode: string;
   borough: string;
   borocode: number;
   latitude: number;
   longitude: number;
+  building_class: string;
 }
-
-export type Invoice = {
-  id: string;
-  customer_id: string;
-  amount: number;
-  date: string;
-  // In TypeScript, this is called a string union type.
-  // It means that the "status" property can only be one of the two strings: 'pending' or 'paid'.
-  status: 'pending' | 'paid';
-};
-
-export type Revenue = {
-  month: string;
-  revenue: number;
-};
-
-export type LatestInvoice = {
-  id: string;
-  name: string;
-  image_url: string;
-  email: string;
-  amount: string;
-};
-
-// The database returns a number for amount, but we later format it to a string with the formatCurrency function
-export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
-  amount: number;
-};
-
-export type InvoicesTable = {
-  id: string;
-  customer_id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  date: string;
-  amount: number;
-  status: 'pending' | 'paid';
-};
-
-export type CustomersTable = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  total_invoices: number;
-  total_pending: number;
-  total_paid: number;
-};
-
-export type FormattedCustomersTable = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  total_invoices: number;
-  total_pending: string;
-  total_paid: string;
-};
-
-export type CustomerField = {
-  id: string;
-  name: string;
-};
-
-export type InvoiceForm = {
-  id: string;
-  customer_id: string;
-  amount: number;
-  status: 'pending' | 'paid';
-};

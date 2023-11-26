@@ -1,0 +1,14 @@
+.charts {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1rem;
+	min-width: 100%;
+
+	background-color: $background-light;
+
+	.chart-wrapper {
+		.chart-header {
+			
+		}
+	}
+}
