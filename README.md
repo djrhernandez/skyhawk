@@ -30,10 +30,11 @@ URL: https://skyhawk.vercel.app
 ## Instructions
 Clone the repo and run the development server with the following:
 ```bash
-npm  ci (clean install)
-npm  run  dev
+npm ci
+npm run dev
 ```
-The environment will be hosted on [http://localhost:3000](http://localhost:3000) after you open the browser. The main page will auto-update as you edit the `app/page.tsx` file or its components.
+The environment will be hosted on [http://localhost:3000](http://localhost:3000) after you open the browser. 
+The main page will auto-update as you edit the `app/page.tsx` file or its components.
 
 ## Resources/References
 To learn more about the dependencies in this app, take a look at the following resources:
