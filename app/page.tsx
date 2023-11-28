@@ -15,23 +15,44 @@ export default function AppPage() {
   const [errors, setErrors] = useState('')
   const [apiData, setApiData] = useState()
   
-  // Data fetch
+  // Data fetch with cache
   useEffect(() => {
-    setPageState(searchStates.LOADING)
-    
-    let params = {
-      '$limit': 5000
+    const cacheKey = 'apiDataCache';
+    const cachedData = localStorage.getItem(cacheKey);
+
+    const fetchData = async () => {
+      try {
+        setPageState(searchStates.LOADING);
+        let params = { '$limit': 5000 };
+        const data = await fetchApi('/resource/tjus-cn27.json', params);
+
+        setApiData(data);
+        setPageState(searchStates.SUCCESS);
+
+        const cache = {
+          data: data,
+          timestamp: new Date().getTime(),
+        };
+        localStorage.setItem(cacheKey, JSON.stringify(cache));
+      } catch (error) {
+        setErrors(error);
+        setPageState(searchStates.FAILURE);
+      }
+    };
+
+    if (cachedData) {
+      const { data, timestamp } = JSON.parse(cachedData);
+      const age = (new Date().getTime() - timestamp) / 1000 / 60; // Age in minutes
+
+      if (age < 60) {
+        setApiData(data);
+        setPageState(searchStates.SUCCESS);
+        return;
+      }
     }
 
-    fetchApi('/resource/tjus-cn27.json', params)
-    .then((data) => {
-      setApiData(data)
-      setPageState(searchStates.SUCCESS)
-    }).catch((error) => {
-      setErrors(error)
-      setPageState(searchStates.FAILURE)
-    })
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <div className="skyhawk-wrapper">
