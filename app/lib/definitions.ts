@@ -39,7 +39,7 @@ export const columnDefinitions = [
         children: [
             {
                 headerName: 'Street Address',
-                valueGetter: (params: { data: { street_num: string; street_name: string; }; }) => {
+                valueGetter: (params) => {
                     return params.data.street_num + ' ' + params.data.street_name;
                 }
             },
