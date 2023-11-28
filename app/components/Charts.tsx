@@ -73,7 +73,7 @@ export const Charts = ({ data, pageState }, props) => {
 		return null;
 	}
 
-	const CustomizedAxisTick = ({ x, y, payload = {}}) => {
+	const CustomizedAxisTick = ({ x, y, payload}) => {
 		const offsetX = 0;
 		const offsetY = 4;
 		const textHeight = 8;
