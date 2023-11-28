@@ -13,6 +13,7 @@ export const NavBar = (props) => {
 						alt='Skyhawk Logo'
 						width={500}
 						height={500}
+						priority={true}
 					/>
 				</div>
 				<div>

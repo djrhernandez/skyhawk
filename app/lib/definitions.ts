@@ -39,7 +39,7 @@ export const columnDefinitions = [
         children: [
             {
                 headerName: 'Street Address',
-                valueGetter: (params) => {
+                valueGetter: (params: { data: { street_num: string; street_name: string; }; }) => {
                     return params.data.street_num + ' ' + params.data.street_name;
                 }
             },
@@ -53,7 +53,7 @@ export const columnDefinitions = [
                 headerName: 'Lat/Long',
                 columnGroupShow: 'open',
                 width: 150,
-                valueGetter: (params) => {
+                valueGetter: (params: { data: { latitude: any; longitude: any; }; }) => {
                   return [params.data.latitude, params.data.longitude];
                 }
             },
