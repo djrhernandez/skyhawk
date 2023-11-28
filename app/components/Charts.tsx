@@ -73,7 +73,7 @@ export const Charts = ({ data, pageState }, props) => {
 		return null;
 	}
 
-	const CustomizedAxisTick = ({ x, y, payload }) => {
+	const CustomizedAxisTick = ({ x, y, payload = {}}) => {
 		const offsetX = 0;
 		const offsetY = 4;
 		const textHeight = 8;
@@ -115,7 +115,7 @@ export const Charts = ({ data, pageState }, props) => {
 								type='category'
 								dataKey='bucket'
 								label={{ value: 'Borough', position: 'bottom' }}
-								tick={<CustomizedAxisTick />}
+								tick={<CustomizedAxisTick x={0} y={0} />}
 							/>
 							<YAxis
 								type='number'
