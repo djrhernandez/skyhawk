@@ -89,7 +89,7 @@ export const Charts = ({ data, pageState }, props) => {
 						y={offsetY}
 						dy={`${index * textHeight}px`}
 						textAnchor="middle"
-						fontSize={8}
+						fontSize={10}
 					>
 						{word}
 					</text>
@@ -115,7 +115,7 @@ export const Charts = ({ data, pageState }, props) => {
 								type='category'
 								dataKey='bucket'
 								label={{ value: 'Borough', position: 'bottom' }}
-								tick={<CustomizedAxisTick x={0} y={0} />}
+								tick={CustomizedAxisTick}
 							/>
 							<YAxis
 								type='number'
@@ -144,7 +144,8 @@ export const Charts = ({ data, pageState }, props) => {
 								interval={0}
 								type='category'
 								dataKey='bucket'
-								label={{ value: 'BLDG Class', position: 'bottom' }}
+								label={{ value: 'Building Class', position: 'bottom' }}
+								tick={CustomizedAxisTick}
 							/>
 							<YAxis
 								type='number'
