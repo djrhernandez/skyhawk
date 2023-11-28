@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import skyhawk from '../styles/images/skyhawk_logo.png'
 
 export const NavBar = ({ viewBar, setViewBar, setTitle, title }, ...props) => {
@@ -7,7 +8,12 @@ export const NavBar = ({ viewBar, setViewBar, setTitle, title }, ...props) => {
 		<div className='navbar'>
 			<a className='navbar-home js-scroll-trigger' href='home'>
 				<div className='graphic'>
-					<img src={skyhawk.src} alt={'Skyhawk Logo'} />
+					<Image 
+						src={skyhawk.src} 
+						alt='Skyhawk Logo'
+						width={500}
+						height={500}
+					/>
 				</div>
 				<div>
 					<span>Skyhawk</span>

@@ -1,0 +1,6 @@
+export const LOADING = 'loading'
+export const FAILURE = 'failure'
+export const SUCCESS = 'success'
+export const NOT_STARTED = 'not_started'
+export const NOT_LOADING = 'not_loading'
+export const NO_RESULTS = 'no_results'

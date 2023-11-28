@@ -1,12 +1,12 @@
 import './globals.css'
 import './styles/App.scss'
 
-import { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { PropsWithChildren } from 'react'
 
-import { NavBar } from './components/Navbar'
 import { Providers } from './providers'
+import { NavBar } from './components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,10 +23,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <div className='app'>
-            <NavBar/>
-            <div>
-              {children}
-            </div>
+            <NavBar />
+            {children}
           </div>
         </Providers>
       </body>

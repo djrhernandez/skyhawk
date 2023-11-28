@@ -5,13 +5,10 @@
 @import 'ui/_vars';
 @import 'Charts';
 @import 'Dashboard';
-@import 'Main';
 @import 'Navbar';
 
 html {
-	position: relative;
-	height: 100%;
-	width: 100%;
+	height: initial;
 }
 
 body {
@@ -20,33 +17,14 @@ body {
 	word-break: break-word;
 }
 
-body.dragging * {
-	cursor: grabbing !important;
-}
-
 * {
 	box-sizing: border-box;
 }
 
-*:focus, *:hover {
-	outline: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight: 500;
-}
-
 .app {
-	height: 100%;
+	min-height: 100vh;
 	background: $background-gradient;
-	background-size: $background-size;   
-	@include animation('Gradient 10s linear infinite');
-}
-
-@include keyframes(Gradient) {
-    0% 		{ background-position: 0% 100% }
-    50% 	{ background-position: 50% 50% }
-    100% 	{ background-position: 100% 0% }
+	background-size: $background-size;
 }
 
 .scroll-to-top {
@@ -68,4 +46,24 @@ h1, h2, h3, h4, h5, h6 {
 	border: 1px solid rgba(128, 128, 128, 0.5);
 	border-radius: .5rem!important;
 	box-shadow: 0px 2px 2px 2px grayscale(0, 0.5);
+}
+
+.loading {
+	background-color: $background-dark;
+	color: orange;
+	font-size: 1.25rem;
+	margin: 1em auto;
+	padding: 1em;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.error {
+	background-color: $background-dark;
+	color: red;
+	font-size: 1.25rem;
+	margin: 1em auto;
+	padding: 1em;
+	text-align: center;
+	border-radius: 5px;
 }

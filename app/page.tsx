@@ -1,67 +1,56 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { NextUIProvider } from '@nextui-org/system'
-import Image from 'next/image'
 import { AgGridReact } from 'ag-grid-react'
 import { fetchApi } from './api/fetchApi'
 import { columnDefinitions } from './lib/definitions'
 import { Charts } from './components/Charts'
+import { Table } from './components/Table'
+
+import * as searchStates from './lib/states'
+import { pages } from 'next/dist/build/templates/app-page'
 
 export default function AppPage() {
-  const [apiData, setApiData] = useState()
-  const params = {
-    '$limit': 5000
-  }
-
-  const [isLoading, setIsLoading] = useState(false)
+  const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
   const [errors, setErrors] = useState('')
-  
-  // Sets props common to all Columns in AG-Grid
-  const defaultColDef = useMemo(() => {
-    return {
-      sortable: true,
-    }
-  }, [])
+  const [apiData, setApiData] = useState()
   
   // Data fetch
   useEffect(() => {
-    setIsLoading(true)
+    setPageState(searchStates.LOADING)
+    
+    let params = {
+      '$limit': 5000
+    }
+
     fetchApi('/resource/tjus-cn27.json', params)
     .then((data) => {
       setApiData(data)
+      setPageState(searchStates.SUCCESS)
     }).catch((error) => {
       setErrors(error)
-      console.log({ error })
-    }).finally(() => {
-      setIsLoading(false)
+      setPageState(searchStates.FAILURE)
     })
   }, [])
 
   return (
     <div className="skyhawk-wrapper">
-      <div className='sidebar'></div>
-      {isLoading && <div>Loading...</div>}
-      {errors && <div className='text-red-500'>Error: {errors}</div>}
-      {apiData && 
-        <div className='dashboard'>  
-          <div className='charts-section'>
-            <Charts data={apiData}/>
+      <div className='dashboard'>  
+        {pageState === searchStates.SUCCESS && 
+          <div>
+            <Charts data={apiData} pageState={pageState} />
+            <Table data={apiData} pageState={pageState} />
           </div>
+        }
 
-          <div className='dash-tbl'>
-              <div className='ag-theme-alpine'>
-                <AgGridReact
-                  rowData={apiData}
-                  rowHeight={30}
-                  columnDefs={columnDefinitions}
-                  defaultColDef={defaultColDef}
-                  animateRows={true}
-                  pagination={true}
-                />
-              </div>
-          </div>
-        </div>
-      }
+        {pageState === searchStates.LOADING && (
+          <div className='loading'>Loading...</div>
+        )}
+
+        {pageState === searchStates.FAILURE && (
+          <div className='error'>Error: {errors}</div>
+        )}
+      </div>
     </div>
   )
 }
