@@ -8,7 +8,6 @@ import { Charts } from './components/Charts'
 import { Table } from './components/Table'
 
 import * as searchStates from './lib/states'
-import { pages } from 'next/dist/build/templates/app-page'
 
 export default function AppPage() {
   const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
