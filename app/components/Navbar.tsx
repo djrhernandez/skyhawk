@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import skyhawk from '../styles/images/skyhawk_logo.png'
 
-export const NavBar = ({ viewBar, setViewBar, setTitle, title }, ...props) => {
+export const NavBar = (props) => {
 	return (
 		<div className='navbar'>
 			<a className='navbar-home js-scroll-trigger' href='home'>
