@@ -13,6 +13,20 @@ URL: https://skyhawk.vercel.app
 - Cross-Platform Accessibility:
 	- Work from anywhere with Skyhawk. It's just as effective on mobile as it is on desktop, ideal for both the tech-savvy and those who prefer simplicity and convenience.
 
+## Current Achievements
+- Built and deployed a new web application using the Next.js framework and Vercel
+- Used Ag-Grid compoents in a real project
+- Implemented API data fetching and caching with JavaScript
+- Integrated SCSS into the development process
+- Learned about NYC principalities through NYCOpenData research
+
+## Future Development Goals
+- Implement unit testing with Jest
+- Improve state management for better performance
+- Make UI adjustments for better mobile/desktop compatibility
+- Enhance data filtering for more detailed analysis
+	- Ideas: on-click rendering for fields that hold more inclination for analysis like Boroughs, building classes, or the number of properties a given owner possesses. 
+
 ## Instructions
 Clone the repo and run the development server with the following:
 ```bash
