@@ -4,6 +4,7 @@ import './styles/App.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { PropsWithChildren } from 'react'
+import { Analytics } from '@vercel/analytics/react';
 
 import { Providers } from './providers'
 import { NavBar } from './components/Navbar'
@@ -25,6 +26,7 @@ export default function RootLayout({
           <div className='app'>
             <NavBar />
             {children}
+            <Analytics />
           </div>
         </Providers>
       </body>
