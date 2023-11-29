@@ -1,7 +1,13 @@
 .charts {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	column-gap: 1rem;
+
+	@include bp-large {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 1rem;
+	}
 	
 	.chart-wrapper {
 		border-radius: $border-radius;

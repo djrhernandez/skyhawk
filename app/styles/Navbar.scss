@@ -1,11 +1,19 @@
 .navbar {
 	display: grid;
 	grid-template-rows: 1fr;
-	grid-template-columns: 1fr 9fr;
+	grid-template-columns: 5fr 7fr;
 	grid-gap: 5px;
 
 	padding: 5px 0px;
 	background-color: black;
+
+	@include bp-large {
+		display: grid;
+		grid-template-columns: 2fr 10fr;
+		grid-gap: 5px;
+
+		padding: 5px 0px;
+	}
 
 	ul, li {
 		margin: 0;
@@ -15,12 +23,27 @@
 		@include flex-container(space-evenly, row);
 		border-right: 1px solid $theme-color;
 		text-align: center;
+		padding-right: 5px;
+
+		@include bp-large {
+			@include flex-container(space-evenly, row);
+
+		}
 
 		.graphic {
 			img {
 				height: 45px;
 				width: auto;
 			}
+		}
+
+		.graphic-title {
+			// display: none;
+
+			// @include bp-medium {
+			// 	display: inherit;	
+
+			// }
 		}
 	}
 

@@ -3,7 +3,6 @@ import './styles/App.scss'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { PropsWithChildren } from 'react'
 import { Analytics } from '@vercel/analytics/react';
 
 import { Providers } from './providers'
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ 
   children 
-}: PropsWithChildren) {
+}: { children: React.ReactNode }) {
   return (
     <html lang="en" className='antialiased' suppressHydrationWarning>
       <body className={inter.className}>

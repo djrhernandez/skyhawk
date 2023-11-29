@@ -6,7 +6,7 @@ import skyhawk from '../styles/images/skyhawk_logo.png'
 export const NavBar = (props) => {
 	return (
 		<div className='navbar'>
-			<a className='navbar-home js-scroll-trigger' href='home'>
+			<a className='navbar-home js-scroll-trigger' href='\'>
 				<div className='graphic'>
 					<Image 
 						src={skyhawk.src} 
@@ -16,7 +16,7 @@ export const NavBar = (props) => {
 						priority={true}
 					/>
 				</div>
-				<div>
+				<div className='graphic-title'>
 					<span>Skyhawk</span>
 				</div>
 			</a>
