@@ -25,9 +25,9 @@ export default function RootLayout({
           <div className='app'>
             <NavBar />
             {children}
-            <Analytics />
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
