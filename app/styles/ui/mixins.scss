@@ -73,12 +73,6 @@
   }
   */
   
-  @mixin bp-mobile {
-    @media only screen and (max-width: 782px) {
-      @content;
-    }
-  }
-  
   @mixin bp-xl-large {
     @media only screen and (min-width: 80em) {
       @content;
@@ -98,6 +92,12 @@
   
   @mixin bp-small {
     @media only screen and (min-width: 30em) {
+      @content;
+    }
+  }
+
+  @mixin bp-mobile {
+    @media only screen and (max-width: 319px) {
       @content;
     }
   }

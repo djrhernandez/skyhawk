@@ -7,12 +7,13 @@
 	padding: 5px 0px;
 	background-color: black;
 
-	@include bp-large {
-		display: grid;
-		grid-template-columns: 1fr 9fr;
-		grid-gap: 5px;
 
-		padding: 5px 0px;
+	@include bp-medium {		
+		grid-template-columns: 2fr 9fr;
+	}
+
+	@include bp-large {		
+		grid-template-columns: 1fr 9fr;
 	}
 
 	ul, li {
@@ -20,30 +21,36 @@
 	}
 
 	.navbar-home {
-		@include flex-container(space-evenly, row);
+		display: grid;
+		grid-template-columns: 1fr;
+		column-gap: 3px;
+		
 		border-right: 1px solid $theme-color;
-		text-align: center;
-		padding-right: 5px;
 
-		@include bp-large {
-			@include flex-container(space-evenly, row);
-
+		@include bp-small {
+			grid-template-columns: 1fr 1fr;
+			padding-right: 5px;
+			text-align: center;
 		}
 
 		.graphic {
 			img {
 				height: 45px;
 				width: auto;
+				margin: auto;
+
+				@include bp-small {
+					margin: inherit;
+				}
 			}
 		}
 
 		.graphic-title {
-			// display: none;
+			margin: auto;
 
-			// @include bp-medium {
-			// 	display: inherit;	
-
-			// }
+			@include bp-mobile {
+				display: none;
+			}
 		}
 	}
 

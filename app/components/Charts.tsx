@@ -15,15 +15,11 @@ const getChartColors = (ctype) => {
 
 export const Charts = ({ data, pageState }, props) => {
 	const boroughlist = data.reduce((acc, item) => {
-		if (!item.borough || !item.parid || item.borough === '1' || item.borough === '2') return acc
+		if (!item.parid || !item.borough || item.borough === '1' || item.borough === '2') return acc
 		if (!acc[item.borough]) acc[item.borough] = 0
 		acc[item.borough] += 1
 		return acc
 	}, {})
-
-	const boroughData = Object.keys(boroughlist)
-		.map((bucket) => ({ bucket, count: boroughlist[bucket] }))
-		.sort((a, b) => b.count - a.count)
 
 	const bldgList = data.reduce((acc, item) => {
 		if (!item.parid || !item.bldg_class) return acc
@@ -34,12 +30,16 @@ export const Charts = ({ data, pageState }, props) => {
 		return acc
 	}, {})
 
+	const boroughData = Object.keys(boroughlist)
+		.map((bucket) => ({ bucket, count: boroughlist[bucket] }))
+		.sort((a, b) => b.count - a.count)
+
 	const bldgData = Object.keys(bldgList)
 		.map((bucket) => ({ bucket, count: bldgList[bucket] }))
 		.filter((item) => item.bucket !== 'RH')
 		.sort((a, b) => b.count - a.count)
 
-	const CustomTooltip = ({ active, payload, label }) => {
+	const ChartTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			const { name } = payload[0]
 			const { bucket, count } = payload[0].payload
@@ -79,7 +79,7 @@ export const Charts = ({ data, pageState }, props) => {
 		return null;
 	}
 
-	const CustomizedAxisTick = ({ x, y, payload}) => {
+	const ChartTick = ({ x, y, payload}) => {
 		const offsetX = 0;
 		const offsetY = 4;
 		const textHeight = 8;
@@ -111,23 +111,23 @@ export const Charts = ({ data, pageState }, props) => {
 				<div className='chart-header'>
 					<div className='header small-important-header'>Properties/Borough</div>
 				</div>
-				<div className='data'>
+				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={boroughData}>
+						<BarChart data={boroughData} margin={{ top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
-							<Tooltip content={CustomTooltip} />
+							<Tooltip content={ChartTooltip} />
 							<XAxis
 								interval={0}
 								type='category'
 								dataKey='bucket'
 								label={{ value: 'Borough', position: 'bottom'}}
-								tick={CustomizedAxisTick}
+								tick={ChartTick}
 							/>
 							<YAxis
 								type='number'
 								fontSize={10}
 								domain={[0, dataMax => (dataMax + (50 - (dataMax % 50)))]}
-								label={{ value: '# of properties', angle: -90, dx: -15 }}
+								label={{ value: '# of properties', angle: -90, dx: -25 }}
 							/>
 
 							<Bar dataKey="count" name='Borough' fill='#000' />
@@ -141,23 +141,23 @@ export const Charts = ({ data, pageState }, props) => {
 				<div className='chart-header'>
 					<div className='header small-important-header'>Building Classification</div>
 				</div>
-				<div className='data'>
+				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={bldgData}>
+						<BarChart data={bldgData} margin={{ top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
-							<Tooltip content={CustomTooltip} />
+							<Tooltip content={ChartTooltip} />
 							<XAxis
 								interval={0}
 								type='category'
 								dataKey='bucket'
 								label={{ value: 'Building Class', position: 'bottom' }}
-								tick={CustomizedAxisTick}
+								tick={ChartTick}
 							/>
 							<YAxis
 								type='number'
 								fontSize={10}
 								domain={[0, dataMax => (dataMax + (50 - (dataMax % 50)))]}
-								label={{ value: '# of properties', angle: -90, dx: -15 }}
+								label={{ value: '# of properties', angle: -90, dx: -25 }}
 							/>
 
 							<Bar dataKey="count" name='Building Class' fill='#000' />
