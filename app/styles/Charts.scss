@@ -17,19 +17,29 @@
 			margin: 5px;
 			color: black;
 		}
-
 	}
 
-	.custom-tooltip {
+	.recharts-surface {
+		height: fit-content;
+	}
+
+	.recharts-tooltip {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
 		grid-row-gap: 5px;
-
+		max-width: 225px;
+		
 		padding: 10px;
+		font-size: 10px;
 		color: $font-color-dark;
-		background-color: $background-light;
 		border: 1px solid grayscale(127, 0.5);
 		border-radius: $border-radius;
+		background-color: $background-light;
+
+		@include bp-medium {
+			font-size: 12px;
+			max-width: 500px;
+		}
 	}
 }

@@ -14,14 +14,6 @@ const getChartColors = (ctype) => {
 }
 
 export const Charts = ({ data, pageState }, props) => {
-	// WIP
-	// const hotelByBoroughList = data.reduce((acc, item) => {
-	// 	if (!item.borough || !item.parid || item.borough === '1' || item.borough === '2') return acc
-	// 	if (!acc[item.borough]) acc[item.borough] = []
-	// 	acc[item.borough].push(item)
-	// 	return acc
-	// }, {})
-
 	const boroughlist = data.reduce((acc, item) => {
 		if (!item.borough || !item.parid || item.borough === '1' || item.borough === '2') return acc
 		if (!acc[item.borough]) acc[item.borough] = 0
@@ -29,14 +21,9 @@ export const Charts = ({ data, pageState }, props) => {
 		return acc
 	}, {})
 
-	const ownerList = data.reduce((acc, item) => {
-		if (!item.parid || !item.owner_name) return acc
-
-		let owner = item.owner_name
-		if (!acc[owner]) acc[owner] = 0
-		acc[owner] += 1
-		return acc
-	}, {})
+	const boroughData = Object.keys(boroughlist)
+		.map((bucket) => ({ bucket, count: boroughlist[bucket] }))
+		.sort((a, b) => b.count - a.count)
 
 	const bldgList = data.reduce((acc, item) => {
 		if (!item.parid || !item.bldg_class) return acc
@@ -47,15 +34,6 @@ export const Charts = ({ data, pageState }, props) => {
 		return acc
 	}, {})
 
-	const boroughData = Object.keys(boroughlist)
-		.map((bucket) => ({ bucket, count: boroughlist[bucket] }))
-		.sort((a, b) => b.count - a.count)
-
-	const ownerData = Object.keys(ownerList)
-		.map((bucket) => ({ bucket, count: ownerList[bucket] }))
-		.filter((item) => item.count > 50)
-		.sort((a, b) => b.count - a.count)
-
 	const bldgData = Object.keys(bldgList)
 		.map((bucket) => ({ bucket, count: bldgList[bucket] }))
 		.filter((item) => item.bucket !== 'RH')
@@ -63,11 +41,39 @@ export const Charts = ({ data, pageState }, props) => {
 
 	const CustomTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
+			const { name } = payload[0]
+			const { bucket, count } = payload[0].payload
+			const buildingTip = building_classifications[bucket]
+
 			return (
-				<div className='custom-tooltip'>
-					<span className='label'>{`${label}`}</span>
-					<span className='desc'>{`Count: ${payload[0].value}`}</span>
-				</div>
+				buildingTip ?
+					<div className='recharts-tooltip'>
+						<div className='section'>
+							<div className='row'>
+								<b>{`${name}: `}</b>{`${label} (${buildingTip.type})`}
+							</div>
+							<div className='row'>
+								<b>{`Count: `}</b>{`${count}`}
+							</div>
+						</div>
+						<div className='section'>
+							<div className='row'>
+								{`- ${buildingTip.description}` || ''}
+							</div>
+						</div>
+						
+					</div>
+				:
+					<div className='recharts-tooltip'>
+						<div className='section'>
+							<div className='row'>
+								<b>{`${name}: `}</b>{`${label}`}
+							</div>
+							<div className='row'>
+								<b>{`Count: `}</b>{`${count}`}
+							</div>
+						</div>
+					</div>
 			)
 		}
 		return null;
@@ -106,7 +112,7 @@ export const Charts = ({ data, pageState }, props) => {
 					<div className='header small-important-header'>Properties/Borough</div>
 				</div>
 				<div className='data'>
-					<ResponsiveContainer width='100%' height={300}>
+					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
 						<BarChart data={boroughData}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={CustomTooltip} />
@@ -114,7 +120,7 @@ export const Charts = ({ data, pageState }, props) => {
 								interval={0}
 								type='category'
 								dataKey='bucket'
-								label={{ value: 'Borough', position: 'bottom' }}
+								label={{ value: 'Borough', position: 'bottom'}}
 								tick={CustomizedAxisTick}
 							/>
 							<YAxis
@@ -124,7 +130,7 @@ export const Charts = ({ data, pageState }, props) => {
 								label={{ value: '# of properties', angle: -90, dx: -15 }}
 							/>
 
-							<Bar dataKey="count" fill='#000' />
+							<Bar dataKey="count" name='Borough' fill='#000' />
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
@@ -136,7 +142,7 @@ export const Charts = ({ data, pageState }, props) => {
 					<div className='header small-important-header'>Building Classification</div>
 				</div>
 				<div className='data'>
-					<ResponsiveContainer width='100%' height={300}>
+					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
 						<BarChart data={bldgData}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={CustomTooltip} />
@@ -154,7 +160,7 @@ export const Charts = ({ data, pageState }, props) => {
 								label={{ value: '# of properties', angle: -90, dx: -15 }}
 							/>
 
-							<Bar dataKey="count" fill='#000' />
+							<Bar dataKey="count" name='Building Class' fill='#000' />
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
@@ -162,34 +168,3 @@ export const Charts = ({ data, pageState }, props) => {
 		</div>
 	)
 }
-
-{/* Displays the # of properties an owner possesses */ }
-{/* <div className='chart-wrapper'>
-<div className='chart-header'>
-	<div className='header small-important-header'>Properties/Owner</div>
-</div>
-<div className='chart-data'>
-	<ResponsiveContainer width='100%' height={300}>
-		<BarChart data={ownerData}>
-			<CartesianGrid strokeDasharray="10 10"/>
-			<Tooltip active={true} content={CustomTooltip} />
-			<XAxis
-				interval={0}
-				type='category' 
-				dataKey='bucket'
-				label={{ value: 'Owner', position: 'bottom'}}
-				tick={<CustomizedAxisTick/>}
-			/>
-			<YAxis
-				interval={0}
-				type='number'
-				fontSize={10}
-				domain={[0, dataMax => (dataMax + (50 - (dataMax % 50)))]}
-				label={{ value: '# of properties', angle: -90, dx: -15 }}
-			/>
-
-			<Bar dataKey="count" fill='#8884d8'/>
-		</BarChart>
-	</ResponsiveContainer>
-</div>
-</div> */}
