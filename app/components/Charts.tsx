@@ -124,7 +124,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={boroughData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
+						<BarChart data={boroughData}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
@@ -154,7 +154,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={bldgData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
+						<BarChart data={bldgData}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
