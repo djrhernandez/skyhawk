@@ -14,15 +14,16 @@ const getChartColors = (ctype) => {
 }
 
 export const Charts = ({ data, pageState }, props) => {
-	const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768)
+	const mediaQuery = window.matchMedia("(mid-width: 768px)")
+	const [isLargeScreen, setIsLargeScreen] = useState(window.matchMedia("(mid-width: 768px)").matches)
 
 	useEffect(() => {
-		const handleResize = () => {
-		  setIsLargeScreen(window.innerWidth > 768);
-		};
-
-		window.addEventListener('resize', handleResize)
-		return () => window.removeEventListener('resize', handleResize)
+		const handleMediaChange = (evt) => {
+			setIsLargeScreen(evt.matches)
+		}
+		
+		mediaQuery.addEventListener('change', handleMediaChange)
+		return () => mediaQuery.removeEventListener('change', handleMediaChange)
 	}, [])
 
 	const boroughlist = data.reduce((acc, item) => {
@@ -124,7 +125,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={boroughData}>
+						<BarChart data={boroughData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
@@ -154,7 +155,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={bldgData}>
+						<BarChart data={bldgData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
