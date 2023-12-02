@@ -23,12 +23,12 @@ export const NavBar = (props) => {
 			<div className='container' id='responsive-navbar'>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='link_1'>Link-1</a>
+						<a className='nav-link' href='link_1'>Mock-1</a>
 					</li>	
 				</ul>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='link_2'>Link-2</a>
+						<a className='nav-link' href='link_2'>Mock-2</a>
 					</li>	
 				</ul>
 			</div>

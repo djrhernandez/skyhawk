@@ -14,6 +14,17 @@ const getChartColors = (ctype) => {
 }
 
 export const Charts = ({ data, pageState }, props) => {
+	const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768)
+
+	useEffect(() => {
+		const handleResize = () => {
+		  setIsLargeScreen(window.innerWidth > 768);
+		};
+
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
 	const boroughlist = data.reduce((acc, item) => {
 		if (!item.parid || !item.borough || item.borough === '1' || item.borough === '2') return acc
 		if (!acc[item.borough]) acc[item.borough] = 0
@@ -113,7 +124,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={boroughData} margin={{ top: 15, left: 15, right: 15, bottom: 30}}>
+						<BarChart data={boroughData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
@@ -143,7 +154,7 @@ export const Charts = ({ data, pageState }, props) => {
 				</div>
 				<div className='chart-data'>
 					<ResponsiveContainer width='100%' height='100%' minHeight={300}>
-						<BarChart data={bldgData} margin={{ top: 15, left: 15, right: 15, bottom: 30}}>
+						<BarChart data={bldgData} margin={isLargeScreen && { top: 15, left: 15, right: 15, bottom: 30}}>
 							<CartesianGrid strokeDasharray="10 10" />
 							<Tooltip content={ChartTooltip} />
 							<XAxis
