@@ -71,6 +71,12 @@
       margin: 0;
     }
   }
+
+  bp-xl-large - 1280px+
+  bp-large    - 960px+
+  bp-medium   - 640px+
+  bp-small    - 480px+
+  bp-mobile   - 320px+
   */
   
   @mixin bp-xl-large {
@@ -78,6 +84,7 @@
       @content;
     }
   }
+
   @mixin bp-large {
     @media only screen and (min-width: 60em) {
       @content;
@@ -89,7 +96,7 @@
       @content;
     }
   }
-  
+
   @mixin bp-small {
     @media only screen and (min-width: 30em) {
       @content;
@@ -97,7 +104,7 @@
   }
 
   @mixin bp-mobile {
-    @media only screen and (max-width: 319px) {
+    @media only screen and (min-width: 20em) {
       @content;
     }
   }

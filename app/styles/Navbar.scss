@@ -1,53 +1,58 @@
+// bp-xl-large - 1280px+
+// bp-large    - 960px+
+// bp-medium   - 640px+
+// bp-small    - 480px+
+// bp-mobile   - 320px+
+
 .navbar {
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-columns: 2fr 8fr;
-	grid-gap: 5px;
+	column-gap: 5px;
 
-	padding: 5px 0px;
 	background-color: black;
 
 	ul, li {
 		margin: 0;
 	}
 
-	@include bp-medium {		
-		grid-template-columns: 2fr 9fr;
+	// TODO: Fix mobile responsiveness for skyhawk logo and text vs mock links in navbar
+	@include bp-mobile {
+		// grid-template-columns: 3fr 10fr;
 	}
 
-	@include bp-large {		
-		grid-template-columns: 1fr 9fr;
+	@include bp-medium {
+		// grid-template-columns: 3fr 9fr;
+		// column-gap: 10px;
 	}
 
 	.navbar-home {
-		display: grid;
-		grid-template-columns: 1fr;
-		border-right: 1px solid $theme-color;
-
-		@include bp-small {
-			grid-template-columns: 1fr 1fr;
-			padding-right: 5px;
+		a {
+			display: grid;
+			grid-template-columns: 1fr;
+			border-right: 1px solid $theme-color;
 			text-align: center;
-		}
-		
-		.graphic {
-			img {
-				height: 45px;
-				width: auto;
-				margin: auto;
-
-				@include bp-small {
-				}
-			}
-		}
-
-		.graphic-title {
-			display: none;
-			margin: auto;
 
 			@include bp-small {
-				display: initial;
-				padding-right: 5px;
+				grid-template-columns: 1fr;
+			}
+
+			@include bp-medium {
+				grid-template-columns: 1fr 1fr;
+			}
+			
+			.graphic {
+				margin: auto 10px;
+			}
+
+			.graphic-title {
+				display: none;
+
+				@include bp-small {
+					display: initial;
+					margin: auto;
+					text-align: center;
+				}
 			}
 		}
 	}

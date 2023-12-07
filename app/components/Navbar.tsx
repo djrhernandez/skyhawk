@@ -6,20 +6,24 @@ import skyhawk from '../styles/images/skyhawk_logo.png'
 export const NavBar = (props) => {
 	return (
 		<div className='navbar'>
-			<a className='navbar-home js-scroll-trigger' href='\'>
-				<div className='graphic'>
-					<Image 
-						src={skyhawk.src} 
-						alt='Skyhawk Logo'
-						width={500}
-						height={500}
-						priority={true}
-					/>
-				</div>
-				<div className='graphic-title'>
-					<span>Skyhawk</span>
-				</div>
-			</a>
+			<div className='navbar-home js-scroll-trigger'>
+				<a className='nav-logo-link' href='\'>
+					<div className='graphic'>
+						<div>
+							<Image 
+								src={skyhawk.src} 
+								alt='Skyhawk Logo'
+								width={200}
+								height={300}
+								priority={true}
+							/>
+						</div>
+					</div>
+					<div className='graphic-title'>
+						<span>Skyhawk</span>
+					</div>
+				</a>
+			</div>
 			<div className='container' id='responsive-navbar'>
 				<ul className='nav-item'>
 					<li>

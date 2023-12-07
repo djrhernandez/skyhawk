@@ -22,7 +22,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 		let pageDiv = document.getElementById('page-size')
 		var value = pageDiv && (pageDiv as HTMLInputElement).value
 
-		gridRef.current.api.paginationSetPageSize(Number(value));
+		gridRef.current.api.paginationSetPageSize(Number(value))
 	}, [])
 
 	return (
