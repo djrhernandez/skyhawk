@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-a
+
 test('Adding 1 + 1 equals 2', () => {
 	// Arrange (Setup)
 	const num1 = 1;
