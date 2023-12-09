@@ -8,22 +8,6 @@ export const Table = ({ data, pageState }: any, props: any) => {
 	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
 	const [pageWidth, pageHeight] = useWindowSize()
 
-	useEffect(() => {
-		// console.log({headerColumns})
-		if (pageWidth < 768) {
-			const modColumns = headerColumns.filter((item) => {
-				// console.log(item.headerName)
-				return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
-			})
-			// console.log({newColumns})
-			setHeaderColumns(modColumns)
-		} else {
-			setHeaderColumns(propertyColumns)
-		}
-		// console.log({headerColumns})
-	}, [pageWidth])
-
-  	// Sets props common to all Columns in AG-Grid
 	const defaultColDef = useMemo(() => {
 		return {
 			sortable: true,
@@ -41,6 +25,20 @@ export const Table = ({ data, pageState }: any, props: any) => {
 
 		gridRef.current.api.paginationSetPageSize(Number(value))
 	}, [])
+
+	useEffect(() => {
+		if (!!pageHeight && pageWidth < 960) {
+			const modColumns = headerColumns.filter((item) => {
+				return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
+			})
+			defaultColDef.suppressMovable = true
+			setHeaderColumns(modColumns)
+		} else {
+			defaultColDef.suppressMovable = false
+			setHeaderColumns(propertyColumns)
+		}
+		console.log({defaultColDef})
+	}, [pageWidth])
 
 	return (
 		<div className='sky-table'>
