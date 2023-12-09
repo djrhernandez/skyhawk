@@ -7,9 +7,7 @@
 .navbar {
 	display: grid;
 	grid-template-rows: 1fr;
-	grid-template-columns: 2fr 8fr;
-	column-gap: 5px;
-
+	grid-template-columns: 3fr 9fr;
 	background-color: black;
 
 	ul, li {
@@ -27,6 +25,10 @@
 	}
 
 	.navbar-home {
+		.nav-logo-link {
+			margin: 5px auto;
+		}
+
 		a {
 			display: grid;
 			grid-template-columns: 1fr;
@@ -42,7 +44,6 @@
 			}
 			
 			.graphic {
-				margin: auto 10px;
 			}
 
 			.graphic-title {

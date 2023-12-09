@@ -1,9 +1,7 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { NextUIProvider } from '@nextui-org/system'
-import { AgGridReact } from 'ag-grid-react'
 import { fetchApi } from './api/fetchApi'
-import { columnDefinitions } from './lib/definitions'
 import { Charts } from './components/Charts'
 import { Table } from './components/Table'
 
@@ -54,23 +52,20 @@ export default function AppPage() {
   }, []);
 
   return (
-    <div className="skyhawk-wrapper">
-      <div className='dashboard'>  
-        {pageState === searchStates.SUCCESS && 
-          <div>
-            <Charts data={apiData} pageState={pageState} />
-            <Table data={apiData} pageState={pageState} />
-          </div>
-        }
+    <div className="dashboard">
+      {pageState === searchStates.SUCCESS && 
+        <div className='skyhawk-wrapper'>
+          <Charts data={apiData} pageState={pageState} />
+          <Table data={apiData} pageState={pageState} />
+        </div>
+      }
+      {pageState === searchStates.LOADING && (
+        <div className='loading'>Loading...</div>
+      )}
 
-        {pageState === searchStates.LOADING && (
-          <div className='loading'>Loading...</div>
-        )}
-
-        {pageState === searchStates.FAILURE && (
-          <div className='error'>Error: {errors}</div>
-        )}
-      </div>
+      {pageState === searchStates.FAILURE && (
+        <div className='error'>Error: {errors}</div>
+      )}
     </div>
   )
 }

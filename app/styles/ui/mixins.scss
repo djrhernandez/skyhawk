@@ -2,223 +2,218 @@
 
 /* --- calc --------------------------------------------------------------------- */
 @mixin calc($property, $expression) {
-    #{$property}: -moz-calc(#{$expression});
-    #{$property}: -webkit-calc(#{$expression});
-    #{$property}: calc(#{$expression});
-  }
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
   
-  @mixin calc-important($property, $expression) {
-    #{$property}: -moz-calc(#{$expression}) !important;
-    #{$property}: -webkit-calc(#{$expression}) !important;
-    #{$property}: calc(#{$expression}) !important;
-  }
-  
-  /* --- font-size -----------------------------------------------------------------
-  Rem is similar to the em value; however, rem is relative to the parent element
-  rather than what the font-size is set as within the scope of the <html> tag.
-  It practically has all the benefits of em but you won't get issues with cascading 
-  font sizing. The only bad part is the lack of support for rem units in IE8 and 
-  below. Luckily, this mixin create a fallback to pixels when rem isn’t supported.
-  */
-  
-  @function calculateRem($size) {
-    $remSize: $size / 16px;
-    @return $remSize * 1rem;
-  }
-  
-  @mixin font-size($size) {
-    font-size: $size;
-    font-size: calculateRem($size);
-  }
-  
-  /* --- layouts -------------------------------------------------------------------
-  These mixins help with code readability since it can get very disruptive when 
-  implementing layout types like flexboxes and grids across many files.
-  Usage:
-  .some-component {
-    @include flex-center;
-    margin: auto;
-    ...
-  }
-  */
-  @mixin flex-container($justify, $direction) {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: center;
-  }
+@mixin calc-important($property, $expression) {
+  #{$property}: -moz-calc(#{$expression}) !important;
+  #{$property}: -webkit-calc(#{$expression}) !important;
+  #{$property}: calc(#{$expression}) !important;
+}
 
-  @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+/* --- font-size -----------------------------------------------------------------
+Rem is similar to the em value; however, rem is relative to the parent element
+rather than what the font-size is set as within the scope of the <html> tag.
+It practically has all the benefits of em but you won't get issues with cascading 
+font sizing. The only bad part is the lack of support for rem units in IE8 and 
+below. Luckily, this mixin create a fallback to pixels when rem isn’t supported.
+*/
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
 
-  /* --- breakpoints ---------------------------------------------------------------
-  When Sass 3.2 was released some time ago, they made it possible to define names 
-  for media queries, which makes the usage of them a lot cleaner. Instead of calling 
-  them @media (min-width: 600px) we can give them more semantic names like 
-  “breakpoint-large” or “breakpoint-really-large-screen-projector”.
-  Usage:
-  .sidebar {
-    width: 60%;
-    float: left;
-    margin: 0 2% 0 0;
-    @include bp-small {
-      width: 100%;
-      float: none;
-      margin: 0;
-    }
-  }
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
 
-  bp-xl-large - 1280px+
-  bp-large    - 960px+
-  bp-medium   - 640px+
-  bp-small    - 480px+
-  bp-mobile   - 320px+
-  */
-  
-  @mixin bp-xl-large {
-    @media only screen and (min-width: 80em) {
-      @content;
-    }
-  }
+/* --- layouts -------------------------------------------------------------------
+These mixins help with code readability since it can get very disruptive when 
+implementing layout types like flexboxes and grids across many files.
+Usage:
+.some-component {
+  @include flex-center;
+  margin: auto;
+  ...
+}
+*/
+@mixin flex-container($justify, $direction) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+}
 
-  @mixin bp-large {
-    @media only screen and (min-width: 60em) {
-      @content;
-    }
-  }
-  
-  @mixin bp-medium {
-    @media only screen and (min-width: 40em) {
-      @content;
-    }
-  }
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  @mixin bp-small {
-    @media only screen and (min-width: 30em) {
-      @content;
-    }
+/* --- breakpoints ---------------------------------------------------------------
+When Sass 3.2 was released some time ago, they made it possible to define names 
+for media queries, which makes the usage of them a lot cleaner. Instead of calling 
+them @media (min-width: 600px) we can give them more semantic names like 
+“breakpoint-large” or “breakpoint-really-large-screen-projector”.
+Usage:
+.sidebar {
+  width: 60%;
+  float: left;
+  margin: 0 2% 0 0;
+  @include bp-small {
+    width: 100%;
+    float: none;
+    margin: 0;
   }
+}
 
-  @mixin bp-mobile {
-    @media only screen and (min-width: 20em) {
-      @content;
-    }
+bp-xl-large - 1280px+
+bp-large    - 960px+
+bp-medium   - 640px+
+bp-small    - 480px+
+bp-mobile   - 320px+
+*/
+@mixin bp-xl-large {
+  @media only screen and (min-width: 80em) {
+    @content;
   }
-  
-  /* --- animations ----------------------------------------------------------------
-  Animations are always a pain to create especially when dealing with vendor prefixes.
-  But with the help of this mixin it will boil down to just a few lines of code.
-  Usage:
-  @include keyframes(slide-down) {
-    0% { opacity: 1; }
-    90% { opacity: 0; }
-  }
-  
-  .element {
-    width: 100px;
-    height: 100px;
-    background: black;
-    @include animation('slide-down 5s 3');
-  }
-  
-  @mixin keyframes($animation-name) {
-    @-webkit-keyframes $animation-name {
-      @content;
-    }
-    @-moz-keyframes $animation-name {
-      @content;
-    }
-    @-ms-keyframes $animation-name {
-      @content;
-    }
-    @-o-keyframes $animation-name {
-      @content;
-    }
-    @keyframes $animation-name {
-      @content;
-    }
-  }
-  */
-  
-  @mixin keyframes($animation-name) {
-    @-webkit-keyframes #{$animation-name} {
-      @content;
-    }
-    @-moz-keyframes #{$animation-name} {
-      @content;
-    }
-    @-ms-keyframes #{$animation-name} {
-      @content;
-    }
-    @-o-keyframes #{$animation-name} {
-      @content;
-    }
-    @keyframes #{$animation-name} {
-      @content;
-    }
-  }
-  
-  @mixin animation($str) {
-    -webkit-animation: #{$str};
-    -moz-animation: #{$str};
-    -ms-animation: #{$str};
-    -o-animation: #{$str};
-    animation: #{$str};
-  }
-  
-  /* --- transitions ---------------------------------------------------------------
-  Along with animations, transitions can also make code bloated which can hurt the 
-  readability. But this can also solved by using a mixin.
-  Usage:
-    a {
-        color: gray;
-        @include transition(color .3s ease);
-        &:hover {
-        color: black;
-        }
-    }
-  */
-  
-  @mixin transition($args...) {
-    -webkit-transition: $args;
-    -moz-transition: $args;
-    -ms-transition: $args;
-    -o-transition: $args;
-    transition: $args;
-  }
-  
-  @mixin transition-delay($args...) {
-    -webkit-transition-delay: $args;
-    -moz-transition-delay: $args;
-    -o-transition-delay: $args;
-    -webkit-transition-delay: $args;
-    transition-delay: $args;
-  }
+}
 
-  @mixin transform($args...) {
-    -webkit-transform: $args;
-    -moz-transform: $args;
-    -ms-transform: $args;
-    -o-transform: $args;
-    transform: $args;
+@mixin bp-large {
+  @media only screen and (min-width: 60em) {
+    @content;
   }
-  
-  /* --- cross browser opacity -----------------------------------------------------
-  This mixin ensures cross browser opacity all the way down to Internet Explorer 5. 
-  However, you may have a lot bigger problems if you have to optimize for things like
-  opacity for IE5.
-  Usage:
-    .faded-text {
-        @include opacity(0.8);
-    }
-  */
-  
-  @mixin opacity($opacity) {
-    opacity: $opacity;
-    $opacity-ie: $opacity * 100;
-    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin bp-medium {
+  @media only screen and (min-width: 40em) {
+    @content;
   }
+}
+
+@mixin bp-small {
+  @media only screen and (min-width: 30em) {
+    @content;
+  }
+}
+
+@mixin bp-mobile {
+  @media only screen and (min-width: 20em) {
+    @content;
+  }
+}
+
+/* --- animations ----------------------------------------------------------------
+Animations are always a pain to create especially when dealing with vendor prefixes.
+But with the help of this mixin it will boil down to just a few lines of code.
+Usage:
+@include keyframes(slide-down) {
+  0% { opacity: 1; }
+  90% { opacity: 0; }
+}
+
+.element {
+  width: 100px;
+  height: 100px;
+  background: black;
+  @include animation('slide-down 5s 3');
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @-ms-keyframes $animation-name {
+    @content;
+  }
+  @-o-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+*/
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+/* --- transitions ---------------------------------------------------------------
+Along with animations, transitions can also make code bloated which can hurt the 
+readability. But this can also solved by using a mixin.
+Usage:
+  a {
+      color: gray;
+      @include transition(color .3s ease);
+      &:hover {
+      color: black;
+      }
+  }
+*/
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transition-delay($args...) {
+  -webkit-transition-delay: $args;
+  -moz-transition-delay: $args;
+  -o-transition-delay: $args;
+  -webkit-transition-delay: $args;
+  transition-delay: $args;
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+/* --- cross browser opacity -----------------------------------------------------
+This mixin ensures cross browser opacity all the way down to Internet Explorer 5. 
+However, you may have a lot bigger problems if you have to optimize for things like
+opacity for IE5.
+Usage:
+  .faded-text {
+      @include opacity(0.8);
+  }
+*/
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}

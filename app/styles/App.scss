@@ -4,8 +4,8 @@
 @import 'ui/_ui';
 @import 'ui/_vars';
 @import 'Charts';
-@import 'Dashboard';
 @import 'Navbar';
+@import 'Table';
 
 html {
 	height: initial;
@@ -25,6 +25,13 @@ body {
 	min-height: 100vh;
 	background: $background-gradient;
 	background-size: $background-size;
+}
+
+.dashboard {
+}
+
+.skyhawk-wrapper {
+	padding: 1rem 2rem;
 }
 
 .scroll-to-top {

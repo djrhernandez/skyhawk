@@ -1,16 +1,33 @@
 'use client'
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-
-import { columnDefinitions } from '../lib/definitions'
+import { propertyColumns } from '../lib/definitions'
 
 export const Table = ({ data, pageState }: any, props: any) => {
 	const gridRef = useRef<AgGridReact>(null)
-	
+	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
+	const [pageWidth, pageHeight] = useWindowSize()
+
+	useEffect(() => {
+		// console.log({headerColumns})
+		if (pageWidth < 768) {
+			const modColumns = headerColumns.filter((item) => {
+				// console.log(item.headerName)
+				return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
+			})
+			// console.log({newColumns})
+			setHeaderColumns(modColumns)
+		} else {
+			setHeaderColumns(propertyColumns)
+		}
+		// console.log({headerColumns})
+	}, [pageWidth])
+
   	// Sets props common to all Columns in AG-Grid
 	const defaultColDef = useMemo(() => {
 		return {
 			sortable: true,
+			suppressMovable: true
 		}
 	}, [])
 
@@ -41,7 +58,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 				<AgGridReact
 					ref={gridRef}
 					rowData={data}
-					columnDefs={columnDefinitions}
+					columnDefs={headerColumns}
 					defaultColDef={defaultColDef}
 					animateRows={true}
 					pagination={true}
@@ -52,4 +69,23 @@ export const Table = ({ data, pageState }: any, props: any) => {
 			</div>
 		</div>
 	)
+}
+
+function useWindowSize() {
+	const [browserSize, setBrowserSize] = useState([window.innerWidth, window.innerHeight])
+
+	useLayoutEffect(() => {
+		function updateSize() {
+			setBrowserSize([window.innerWidth, window.innerHeight])
+		}
+
+		window.addEventListener('resize', updateSize)
+		updateSize()
+
+		return () => {
+			window.removeEventListener('resize', updateSize)
+		}
+	}, [])
+
+	return browserSize
 }

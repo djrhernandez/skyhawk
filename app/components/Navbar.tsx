@@ -9,15 +9,13 @@ export const NavBar = (props) => {
 			<div className='navbar-home js-scroll-trigger'>
 				<a className='nav-logo-link' href='\'>
 					<div className='graphic'>
-						<div>
-							<Image 
-								src={skyhawk.src} 
-								alt='Skyhawk Logo'
-								width={200}
-								height={300}
-								priority={true}
-							/>
-						</div>
+						<Image 
+							src={skyhawk.src} 
+							alt='Skyhawk Logo'
+							width={500}
+							height={500}
+							priority={true}
+						/>
 					</div>
 					<div className='graphic-title'>
 						<span>Skyhawk</span>

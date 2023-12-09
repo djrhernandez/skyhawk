@@ -4,8 +4,24 @@
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export const rechartGraphColors = ['#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 
+export const rechartsLayout = {
+    width: '100%',
+    height: '100%',
+    minHeight: 200,
+    maxHeight: 300,
+    strokeDashArray: '10 10',
+    fontSize: 10,
+    dataMax: 50,
+    margins: {
+        top: 15,
+        left: 15,
+        right: 15,
+        bottom: 30
+    }
+}
+
 // Listing of Hotels within the 5 boroughs of New York City
-export const columnDefinitions = [
+export const propertyColumns = [
     {
         headerName: 'ID',
         field: 'parid',
@@ -140,7 +156,7 @@ export const columnDefinitions = [
     - Class R (Residential) Buildings - Condominiums
     - Class H (Commercial) Buildings - Hotels
 */
-export const building_classifications = {
+export const building_classes = {
     "RH": {
         type: 'Hotel/Boatel',
         description: 'Covers hotels and boatels.\n' +
@@ -220,25 +236,4 @@ export const building_classifications = {
         'They are actually the most numerous, accounting for approximately 40% of the total number of hotels. They are most frequent in Manhattan (55%), Queens (26%) and Brooklyn (12%).\n' +
         'The neighborhoods where they can be found most often are the Upper West Side (Manhattan), Hudson Yards/Chelsea/Flatiron/Union Square (Manhattan), Midtown/Midtown South (Manhattan), Queens Bridge/Ravenswood/Long Island City North (Queens) and Clinton (Manhattan).'
     },
-}
-
-
-
-export type User = {
-    id: string;
-    name: string;
-    email: string;
-    password: string;
-};
-
-export type Hotel = {
-    parid: number;
-    owner_name: string;
-    address: string;
-    postcode: string;
-    borough: string;
-    borocode: number;
-    latitude: number;
-    longitude: number;
-    building_class: string;
 }
