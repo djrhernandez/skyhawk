@@ -1,9 +1,3 @@
-// bp-xl-large - 1280px+
-// bp-large    - 960px+
-// bp-medium   - 640px+
-// bp-small    - 480px+
-// bp-mobile   - 320px+
-
 .navbar {
 	display: grid;
 	grid-template-rows: 1fr;
@@ -12,16 +6,6 @@
 
 	ul, li {
 		margin: 0;
-	}
-
-	// TODO: Fix mobile responsiveness for skyhawk logo and text vs mock links in navbar
-	@include bp-mobile {
-		// grid-template-columns: 3fr 10fr;
-	}
-
-	@include bp-medium {
-		// grid-template-columns: 3fr 9fr;
-		// column-gap: 10px;
 	}
 
 	.navbar-home {
