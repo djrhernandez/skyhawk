@@ -1,12 +1,19 @@
 'use client'
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { defaultColumnDefs, propertyColumns } from '../lib/definitions'
+import { propertyColumns } from '../lib/definitions'
 
 export const Table = ({ data, pageState }: any, props: any) => {
 	const gridRef = useRef<AgGridReact>(null)
-	const [headerColumns, setHeaderColumns] = useState(propertyColumns || null)
+	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
 	const [pageWidth, pageHeight] = useWindowSize()
+
+	const defaultColDef = useMemo(() => {
+		return {
+			sortable: true,
+			suppressMovable: true
+		}
+	}, [])
 
 	const onGridReady = useCallback((params: { api: { sizeColumnsToFit: () => void; }; }) => {
 		params.api.sizeColumnsToFit()
@@ -24,12 +31,13 @@ export const Table = ({ data, pageState }: any, props: any) => {
 			const modColumns = headerColumns.filter((item) => {
 				return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
 			})
-			defaultColumnDefs.suppressMovable = true
+			defaultColDef.suppressMovable = true
 			setHeaderColumns(modColumns)
 		} else {
-			defaultColumnDefs.suppressMovable = false
+			defaultColDef.suppressMovable = false
 			setHeaderColumns(propertyColumns)
 		}
+		console.log({defaultColDef})
 	}, [pageWidth])
 
 	return (
@@ -49,7 +57,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 					ref={gridRef}
 					rowData={data}
 					columnDefs={headerColumns}
-					defaultColDef={defaultColumnDefs}
+					defaultColDef={defaultColDef}
 					animateRows={true}
 					pagination={true}
 					paginationPageSize={10}
