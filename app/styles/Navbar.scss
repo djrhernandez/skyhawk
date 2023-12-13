@@ -1,16 +1,20 @@
 .navbar {
 	display: grid;
-	grid-template-rows: 1fr;
-	grid-template-columns: 3fr 9fr;
+	grid-template-columns: 2fr 8fr;
 	background-color: black;
+	padding: 0.25rem 0;
 
 	ul, li {
 		margin: 0;
 	}
 
+	@include bp-large {
+		display: grid;
+		grid-template-columns: 2fr 18fr;
+	}
+
 	.navbar-home {
 		.nav-logo-link {
-			margin: 5px auto;
 		}
 
 		a {

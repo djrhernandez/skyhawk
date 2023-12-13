@@ -20,19 +20,26 @@ export const rechartsLayout = {
     }
 }
 
+export const defaultColumnDefs = {
+    flex: 1,
+    filter: true,
+    sortable: true,
+    suppressMovable: true
+}
+
 // Listing of Hotels within the 5 boroughs of New York City
 export const propertyColumns = [
     {
         headerName: 'ID',
         field: 'parid',
         width: 100,
-        cellStyle: { paddingLeft: 5 }
+        initialPinned: 'left'
     },
     {
         headerName: 'Owner',
         field: 'owner_name',
         filter: true,
-        wrapText: true,
+        wrapText: true
     },
     {
         headerName: 'Borough Info',
@@ -63,7 +70,7 @@ export const propertyColumns = [
                 headerName: 'Postcode', 
                 field: 'postcode',
                 width: 100,
-                columnGroupShow: 'open' 
+                columnGroupShow: 'open'
             },
             {
                 headerName: 'Lat/Long',
