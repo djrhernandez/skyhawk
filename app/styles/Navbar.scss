@@ -1,11 +1,19 @@
 .navbar {
 	display: grid;
-	grid-template-rows: 1fr;
-	grid-template-columns: 3fr 9fr;
+	grid-template-columns: 4rem 1fr;
 	background-color: black;
+	padding: 0.25rem 0;
 
 	ul, li {
 		margin: 0;
+	}
+
+	@include bp-small {
+		grid-template-columns: 5rem 1fr;
+	}
+
+	@include bp-medium {
+		grid-template-columns: 10rem 1fr;
 	}
 
 	.navbar-home {
@@ -28,12 +36,17 @@
 			}
 			
 			.graphic {
+				padding-right: 0.5rem;
+
+				@include bp-medium {
+					padding-right: initial;
+				}
 			}
 
 			.graphic-title {
 				display: none;
 
-				@include bp-small {
+				@include bp-medium {
 					display: initial;
 					margin: auto;
 					text-align: center;

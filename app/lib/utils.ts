@@ -6,3 +6,7 @@ export const getRandomColor = () => {
   }
   return color
 }
+
+export const capitalize = (str: string) => {
+  return str.replace(/\b\w/g, letr => letr.toUpperCase())
+}

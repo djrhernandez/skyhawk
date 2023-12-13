@@ -77,7 +77,7 @@ bp-medium   - 640px+
 bp-small    - 480px+
 bp-mobile   - 320px+
 */
-@mixin bp-xl-large {
+@mixin bp-xlarge {
   @media only screen and (min-width: 80em) {
     @content;
   }

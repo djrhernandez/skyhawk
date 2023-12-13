@@ -21,12 +21,11 @@ export const rechartsLayout = {
 }
 
 // Listing of Hotels within the 5 boroughs of New York City
-export const propertyColumns = [
+export const propertyColumnsDetailed = [
     {
         headerName: 'ID',
         field: 'parid',
         width: 100,
-        cellStyle: { paddingLeft: 5 }
     },
     {
         headerName: 'Owner',
@@ -46,7 +45,7 @@ export const propertyColumns = [
                 headerName: 'Code', 
                 field: 'borocode',
                 width: 125,
-                columnGroupShow: 'open'
+                columnGroupShow: 'open',
             }
         ]
     },
@@ -63,7 +62,7 @@ export const propertyColumns = [
                 headerName: 'Postcode', 
                 field: 'postcode',
                 width: 100,
-                columnGroupShow: 'open' 
+                columnGroupShow: 'open'
             },
             {
                 headerName: 'Lat/Long',
@@ -150,6 +149,10 @@ export const propertyColumns = [
         ]
     }
 ]
+
+export const propertyColumns = propertyColumnsDetailed.filter((item) => {
+    return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
+})
 
 /* 
     NYC Building Classes:

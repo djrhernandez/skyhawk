@@ -1,15 +1,17 @@
 'use client'
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { propertyColumns } from '../lib/definitions'
+import { propertyColumns, propertyColumnsDetailed } from '../lib/definitions'
 
 export const Table = ({ data, pageState }: any, props: any) => {
 	const gridRef = useRef<AgGridReact>(null)
-	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
 	const [pageWidth, pageHeight] = useWindowSize()
+	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
 
 	const defaultColDef = useMemo(() => {
 		return {
+			flex: 1,
+			filter: true,
 			sortable: true,
 			suppressMovable: true
 		}
@@ -28,28 +30,26 @@ export const Table = ({ data, pageState }: any, props: any) => {
 
 	useEffect(() => {
 		if (!!pageHeight && pageWidth < 960) {
-			const modColumns = headerColumns.filter((item) => {
-				return ['ID', 'Owner', 'Borough Info', 'Location Info'].includes(item.headerName)
-			})
 			defaultColDef.suppressMovable = true
-			setHeaderColumns(modColumns)
+			setHeaderColumns(propertyColumns)
 		} else {
 			defaultColDef.suppressMovable = false
-			setHeaderColumns(propertyColumns)
+			setHeaderColumns(propertyColumnsDetailed)
 		}
-		console.log({defaultColDef})
 	}, [pageWidth])
 
 	return (
 		<div className='sky-table'>
-			<div className='page-tab'>
-				<span>Page Size:</span>
-				<select onChange={onPageSizeChanged} id="page-size">
-					<option value="10">10</option>
-					<option value="25">25</option>
-					<option value="50">50</option>
-					<option value="100">100</option>
-				</select>
+			<div className='page-header'>
+				<div className='page-tab'>
+					<span>Page Size:</span>
+					<select onChange={onPageSizeChanged} id="page-size">
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</select>
+				</div>
 			</div>
 
 			<div className='ag-theme-balham'>
@@ -63,7 +63,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 					paginationPageSize={10}
 					tooltipHideDelay={500}
 					onGridReady={onGridReady}
-					/>
+				/>
 			</div>
 		</div>
 	)

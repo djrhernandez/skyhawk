@@ -53,21 +53,41 @@ body {
 }
 
 .loading {
+	display: grid;
+	grid-template-columns: 1fr;
 	background-color: $background-dark;
-	color: orange;
-	font-size: 1.25rem;
-	margin: 1em auto;
-	padding: 1em;
-	text-align: center;
 	border-radius: 5px;
+	color: orange;
+
+	margin: 1rem;
+	text-align: center;
+	word-wrap: break-word;
+
+	.header {
+		margin: 1rem;
+	}
+
+	.body {	
+		margin: 0.5rem;
+	}
 }
 
 .error {
+	display: grid;
+	grid-template-columns: 1fr;
 	background-color: $background-dark;
-	color: red;
-	font-size: 1.25rem;
-	margin: 1em auto;
-	padding: 1em;
-	text-align: center;
 	border-radius: 5px;
+	color: red;
+
+	margin: 1rem;
+	text-align: center;
+	word-wrap: break-word;
+
+	.header {
+		margin: 1rem;
+	}
+
+	.body {	
+		margin: 0.5rem;
+	}
 }

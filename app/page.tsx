@@ -5,6 +5,7 @@ import { fetchApi } from './api/fetchApi'
 import { Charts } from './components/Charts'
 import { Table } from './components/Table'
 
+import { capitalize } from './lib/utils'
 import * as searchStates from './lib/states'
 
 export default function AppPage() {
@@ -53,19 +54,30 @@ export default function AppPage() {
 
   return (
     <div className="dashboard">
-      {pageState === searchStates.SUCCESS && 
-        <div className='skyhawk-wrapper'>
-          <Charts data={apiData} pageState={pageState} />
-          <Table data={apiData} pageState={pageState} />
-        </div>
-      }
-      {pageState === searchStates.LOADING && (
-        <div className='loading'>Loading...</div>
-      )}
-
-      {pageState === searchStates.FAILURE && (
-        <div className='error'>Error: {errors}</div>
-      )}
+      {pageState === searchStates.SUCCESS && renderSuccess(apiData, pageState)}
+      {pageState === searchStates.LOADING && renderLoading(apiData, pageState)}
+      {pageState === searchStates.FAILURE && renderError(errors, pageState)}
     </div>
   )
 }
+
+const renderSuccess = (data, pageState) => (
+  <div className='skyhawk-wrapper'>
+    <Charts data={data} pageState={pageState} />
+    <Table data={data} pageState={pageState} />
+  </div>
+)
+
+const renderLoading = (data, pageState) => (
+	<div className='loading'>
+    <div className='header'>{`${capitalize(pageState)}...`}</div>
+    <div className='body'>{`Data:\n${JSON.stringify(data)}`}</div>
+  </div>
+)
+
+const renderError = (error, pageState) => (
+	<div className='error'>
+    <div className='header'>{`${capitalize(pageState)}!`}</div>
+    <div className='body'>{`Data: ${error}`}</div>
+  </div>
+)
