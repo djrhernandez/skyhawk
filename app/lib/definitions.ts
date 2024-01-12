@@ -20,6 +20,13 @@ export const rechartsLayout = {
     }
 }
 
+export const defaultColumnDefs = {
+    flex: 1,
+    filter: true,
+    sortable: true,
+    suppressMovable: true
+}
+
 // Listing of Hotels within the 5 boroughs of New York City
 export const propertyColumnsDetailed = [
     {

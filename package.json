@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ag-grid-community/react": "^30.2.1",
+    "@googlemaps/js-api-loader": "^1.16.2",
     "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^6.1.4",

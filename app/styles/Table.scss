@@ -1,14 +1,25 @@
 .sky-table {
 	padding-bottom: 1rem;
 
-	span {
-		padding-right: 5px;
+	.page {
+		display: grid;
+		grid-template-columns: 10fr 2fr;
+		background-color: ghostwhite;
+		color: black;
+		padding: 7.5px;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+	}
+
+	.page-header {
+		margin: auto;
 	}
 
 	.page-tab {
-		padding-bottom: 5px;
+		margin: auto;
 
 		select {
+			color: white;
 			border-radius: 3px;
 		}
 	}

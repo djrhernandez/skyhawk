@@ -1,21 +1,13 @@
 'use client'
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { propertyColumns, propertyColumnsDetailed } from '../lib/definitions'
+import { propertyColumns, propertyColumnsDetailed, defaultColumnDefs } from '../lib/definitions'
+import { useWindowSize } from '../lib/utils'
 
 export const Table = ({ data, pageState }: any, props: any) => {
 	const gridRef = useRef<AgGridReact>(null)
 	const [pageWidth, pageHeight] = useWindowSize()
 	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
-
-	const defaultColDef = useMemo(() => {
-		return {
-			flex: 1,
-			filter: true,
-			sortable: true,
-			suppressMovable: true
-		}
-	}, [])
 
 	const onGridReady = useCallback((params: { api: { sizeColumnsToFit: () => void; }; }) => {
 		params.api.sizeColumnsToFit()
@@ -30,17 +22,24 @@ export const Table = ({ data, pageState }: any, props: any) => {
 
 	useEffect(() => {
 		if (!!pageHeight && pageWidth < 960) {
-			defaultColDef.suppressMovable = true
+			defaultColumnDefs.suppressMovable = true
 			setHeaderColumns(propertyColumns)
 		} else {
-			defaultColDef.suppressMovable = false
+			defaultColumnDefs.suppressMovable = false
 			setHeaderColumns(propertyColumnsDetailed)
 		}
-	}, [pageWidth, defaultColDef])
+	}, [pageWidth, defaultColumnDefs])
 
 	return (
 		<div className='sky-table'>
-			<div className='page-header'>
+			<div className='page'>
+				<div className='page-header'>
+					<span>
+						Click on any tab to sort by field name. Click on the menu after hovering over a tab to filter data.
+						Some tabs may be expanded to look at additional information.
+					</span>
+				</div>
+
 				<div className='page-tab'>
 					<span>Page Size:</span>
 					<select onChange={onPageSizeChanged} id="page-size">
@@ -57,7 +56,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 					ref={gridRef}
 					rowData={data}
 					columnDefs={headerColumns}
-					defaultColDef={defaultColDef}
+					defaultColDef={defaultColumnDefs}
 					animateRows={true}
 					pagination={true}
 					paginationPageSize={10}
@@ -67,23 +66,4 @@ export const Table = ({ data, pageState }: any, props: any) => {
 			</div>
 		</div>
 	)
-}
-
-function useWindowSize() {
-	const [browserSize, setBrowserSize] = useState([window.innerWidth, window.innerHeight])
-
-	useLayoutEffect(() => {
-		function updateSize() {
-			setBrowserSize([window.innerWidth, window.innerHeight])
-		}
-
-		window.addEventListener('resize', updateSize)
-		updateSize()
-
-		return () => {
-			window.removeEventListener('resize', updateSize)
-		}
-	}, [])
-
-	return browserSize
 }

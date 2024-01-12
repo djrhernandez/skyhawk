@@ -11,17 +11,17 @@ const getChartColors = (ctype: string | number) => {
 	return decidedGraphColors[ctype]
 } 
 
-export const Charts = ({ data, pageState }, props) => {
+export const Charts = ({ data, pageState }: any, props: any) => {
 	return (
 		<div className='charts'>
 			{pageState === 'failure' && renderError(props)}
 			{pageState === 'loading' && renderLoading(props)}
-			{pageState === 'success' && renderGraphs(data, pageState, props)}
+			{pageState === 'success' && renderGraphs(pageState, data, props)}
 		</div>
 	)
 }
 
-const renderGraphs = (data: any, pageState: string, props: any) => {
+const renderGraphs = (pageState: string, data: any, props: any) => {
 	const layout = rechartsLayout
 	const boroughlist = data.reduce((acc: { [x: string]: number }, item: { parid: any; borough: string }) => {
 		if (!item.parid || !item.borough || ['1', '2'].includes(item.borough)) return acc
@@ -161,7 +161,7 @@ const ChartTooltip = (props: { active: any; payload: any; label: any }) => {
 				</div>
 				<div className='section'>
 					<div className='row'>
-						{`- ${buildingTip.description}` || ''}
+						{`${buildingTip.description || ''}`}
 					</div>
 				</div>
 				
@@ -210,14 +210,14 @@ const ChartTick = (props: { x: any; y: any; payload: any }) => {
 
 const renderDataError = () => (
 	<div style={{textAlign: 'center', fontSize: '1rem', margin: '2.5em'}}>
-		Not enough data to render graphs. Please modify the time range for the dashboard.
+		Not enough data to render graphs. Please modify the filtering for the dashboard.
 	</div>
 )
 
-const renderLoading = (props) => (
+const renderLoading = (props: any) => (
 	<div className='loading'>Loading...</div>
 )
 
-const renderError = (props) => (
+const renderError = (props: any) => (
 	<div className='error'>Error!</div>
 )
