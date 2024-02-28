@@ -7,9 +7,20 @@ const HEADERS = {
 
 export const dynamic = 'force-dynamic'
 
-const buildUrl = (path, params = {}) => {
-  const url = new URL(`${API_BASE_URL}/${path}`)
-  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+const buildUrl = (type, path, params = {}) => {
+  let endpoint
+  switch(type) {
+    case 'misc':
+      endpoint = '<SOME_URL>'
+    case 'dota':
+      endpoint = '<DOTA2_URL>'
+      break
+    default:
+      endpoint = API_BASE_URL
+  }
+
+  const url = new URL(`${endpoint}/${path}`)
+  Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value))
   return url.toString()
 }
 

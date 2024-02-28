@@ -1,9 +1,13 @@
-export default function DotaLayout({ 
+export default function RootLayout({ 
   children 
 }: { children: React.ReactNode }) {
   return (
-    <section>
-		{children}
-	</section>
+    <html lang="en" className='antialiased' suppressHydrationWarning>
+      <body>
+        <div className='app'>
+          {children}
+        </div>
+      </body>
+    </html>
   )
 }
