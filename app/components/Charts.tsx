@@ -13,7 +13,7 @@ const getChartColors = (ctype: string | number) => {
 
 export const Charts = ({ data, pageState }: any, props: any) => {
 	return (
-		<div className='charts'>
+		<div className='charts' data-testid='charts'>
 			{pageState === 'failure' && renderError(props)}
 			{pageState === 'loading' && renderLoading(props)}
 			{pageState === 'success' && renderGraphs(pageState, data, props)}

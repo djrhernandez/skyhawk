@@ -1,29 +1,31 @@
-const API_URL = 'https://data.cityofnewyork.us';
-const headers = {
+const API_BASE_URL = 'https://data.cityofnewyork.us'
+const DEFAULT_PARAMS = { '$limit': 5000 }
+const HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json; charset=utf-8',
-};
+}
 
 export const dynamic = 'force-dynamic'
 
-const _url = (path, args) => {
-	let url = `${API_URL}/${path}?`;
-
-	for (let arg in args) {
-		url += `&${arg}=${args[arg]}`;
-	}
-	return url
+const buildUrl = (path, params = {}) => {
+  const url = new URL(`${API_BASE_URL}/${path}`)
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+  return url.toString()
 }
 
-export async function fetchApi(path, args = {}) {
-  const response = await fetch(_url(path, args), {
-    method: 'GET',
-    headers: headers,
-  })
-
+const handleResponse = async (response) => {
   if (!response.ok) {
-    throw new Error('Failed to fetch API data')
+      const errorMessage = `Failed to fetch data: ${response.status} ${response.statusText}`
+      throw new Error(errorMessage)
   }
-
   return response.json()
+}
+
+export async function fetchApi(path, params = {}) {
+  const url = buildUrl(path, params)
+  const response = await fetch(url, {
+      method: 'GET',
+      headers: HEADERS,
+  })
+  return handleResponse(response);
 }

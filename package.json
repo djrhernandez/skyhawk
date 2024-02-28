@@ -16,17 +16,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "seed": "node -r dotenv/config ./scripts/seed.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@ag-grid-community/react": "^30.2.1",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^1.9.7",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.1.0",
-    "@testing-library/user-event": "^14.5.1",
-    "@types/jest": "^29.5.8",
     "@vercel/analytics": "^1.1.1",
     "@vercel/postgres": "^0.5.1",
     "ag-grid-community": "^30.2.1",
@@ -62,6 +60,10 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.9.1",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",

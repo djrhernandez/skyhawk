@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
-import { NextUIProvider } from '@nextui-org/system'
 import { fetchApi } from './api/fetchApi'
 import { Charts } from './components/Charts'
 import { Table } from './components/Table'
@@ -71,7 +70,7 @@ const renderSuccess = (data, pageState) => (
 const renderLoading = (data, pageState) => (
 	<div className='loading'>
     <div className='header'>{`${capitalize(pageState)}...`}</div>
-    <div className='body'>{`Data:\n${JSON.stringify(data)}`}</div>
+    <div className='body'>{`${data ? `Data: ${JSON.stringify(data)}` : '...'}`}</div>
   </div>
 )
 
