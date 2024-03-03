@@ -21,7 +21,7 @@ export default function AppPage() {
       try {
         setPageState(searchStates.LOADING);
         let params = { '$limit': 5000 };
-        const data = await fetchApi('/resource/tjus-cn27.json', params);
+        const data = await fetchApi(null, '/resource/tjus-cn27.json', params);
 
         setApiData(data);
         setPageState(searchStates.SUCCESS);
