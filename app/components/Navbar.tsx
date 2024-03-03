@@ -25,12 +25,12 @@ export const NavBar = (props) => {
 			<div className='container' id='responsive-navbar'>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='dota2'>Dota 2</a>
+						<a className='nav-link' href='sketchpad'>Canvas</a>
 					</li>
 				</ul>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='sketchpad'>Canvas</a>
+						<a className='nav-link' href='dota2'>Dota 2</a>
 					</li>
 				</ul>
 			</div>

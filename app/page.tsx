@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { fetchApi } from './api/fetchApi'
 import { Charts } from './components/Charts'
 import { Table } from './components/Table'
+import { Wrapper } from './components/Wrapper'
 
 import { capitalize } from './lib/utils'
 import * as searchStates from './lib/states'
@@ -61,10 +62,10 @@ export default function AppPage() {
 }
 
 const renderSuccess = (data, pageState) => (
-  <div className='skyhawk-wrapper'>
+  <Wrapper>
     <Charts data={data} pageState={pageState} />
     <Table data={data} pageState={pageState} />
-  </div>
+  </Wrapper>
 )
 
 const renderLoading = (data, pageState) => (

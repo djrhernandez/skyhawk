@@ -1,16 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { fetchApi } from '../api/fetchApi'
-import { Charts } from '../components/Charts'
-import { Table } from '../components/Table'
-
-import { capitalize } from '../lib/utils'
-import * as searchStates from '../lib/states'
+import React from 'react'
+import { Wrapper } from '../components/Wrapper'
 
 export default function Page() {
 
 	return (
-		<div className='container'>
-			Sketchpad/Canvas Page
-		</div>
+		<Wrapper>
+			<p>Sketchpad/Canvas Page</p>
+		</Wrapper>
 	)
 }
