@@ -12,10 +12,10 @@ export default function Dota2() {
 				Dota 2 Page
 			</section>
 			<section>
-				<Card title='Check Mate' content='LOSER BITCH'/>
+				<Card title='Check Mate' content='Hello World'/>
 			</section>
 			<section>
-				<Button type='primary' label='TEST' onClick={null}/>
+				<Button type='primary' label='Button' onClick={null}/>
 			</section>
 		</div>	
 	)
