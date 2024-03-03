@@ -7,28 +7,33 @@ import { Analytics } from '@vercel/analytics/react';
 
 import { Providers } from './providers'
 import { NavBar } from './components/Navbar'
+import { Footer } from './components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Skyhawk',
-  description: 'Generated with React and Next.js, Deployed on Vercel',
+	title: 'Skyhawk',
+	description: 'Generated with React and Next.js, Deployed on Vercel',
 }
 
-export default function RootLayout({ 
-  children 
+export default function RootLayout({
+	children
 }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className='antialiased' suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>
-          <div className='app'>
-            <NavBar />
-            {children}
-          </div>
-        </Providers>
-        <Analytics />
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" className='antialiased' suppressHydrationWarning>
+			<body className={inter.className}>
+				<Providers>
+					
+					<div className='app'>
+						<NavBar />
+						{children}
+					</div>
+
+					<Footer />
+
+				</Providers>
+				<Analytics />
+			</body>
+		</html>
+	)
 }

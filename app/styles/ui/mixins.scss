@@ -19,15 +19,23 @@ rather than what the font-size is set as within the scope of the <html> tag.
 It practically has all the benefits of em but you won't get issues with cascading 
 font sizing. The only bad part is the lack of support for rem units in IE8 and 
 below. Luckily, this mixin create a fallback to pixels when rem isn’t supported.
+Usage: 
+.some-component {
+  @include fontSize(12px);
+  ...
+}
+
+.some-component {
+  font-size: calculateRem(12px);
+}
 */
 @function calculateRem($size) {
   $remSize: $size / 16px;
   @return $remSize * 1rem;
 }
 
-@mixin font-size($size) {
+@mixin fontSize($size) {
   font-size: $size;
-  font-size: calculateRem($size);
 }
 
 /* --- layouts -------------------------------------------------------------------

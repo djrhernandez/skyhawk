@@ -1,4 +1,4 @@
-export default function Dota2Layout({
+export default function SketchpadLayout({
 	children
 }: { children: React.ReactNode }) {
 	return (

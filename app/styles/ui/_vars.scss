@@ -1,6 +1,6 @@
 /* Simple grayscale function for better color refactoring */
 @function grayscale($rgb, $a) {
-	@return rgba($rgb,$rgb,$rgb,$a);
+	@return rgba($rgb, $rgb, $rgb, $a);
 }
 
 /* Background/Theme */
@@ -29,7 +29,7 @@ $font-size--lg: 24px;
 $font-size--xl: 32px;
 
 /* Navbar */
-$navbar-bg-color: grayscale(255,1);
+$navbar-bg-color: grayscale(255, 1);
 $navbar-title-color: #333;
 $navbar-logo-bg-color: #333;
 
@@ -42,22 +42,22 @@ $menu-btn-on-color: #777;
 /* Buttons */
 $btn-transition-dur: .25s;
 
-/* App Loaged */
+/* App Loager */
 $app-loader-title-color: #fff;
-$app-loader-message-color: grayscale(150,1);
-$app-loader-bg-color: grayscale(0,.9);
+$app-loader-message-color: grayscale(150, 1);
+$app-loader-bg-color: grayscale(0, .9);
 
 //---------------------------------------------------------------
 // UI ELEMENTS
 //---------------------------------------------------------------
-$color__site-bg: grayscale(30,1);
-$color__site-txt: grayscale(255,1);
+$color__site-bg: grayscale(30, 1);
+$color__site-txt: grayscale(255, 1);
 
 /* Time Picker */
-$color__time-picker-bg: grayscale(55,1);
+$color__time-picker-bg: grayscale(55, 1);
 $color__time-picker-column-bg: $color__site-bg;
-$color__time-picker-cell-txt: grayscale(255,1);
-$color__time-picker-cell-hover-bg: grayscale(255,.05);
-$color__time-picker-cell-hover-txt: grayscale(255,1);
+$color__time-picker-cell-txt: grayscale(255, 1);
+$color__time-picker-cell-hover-bg: grayscale(255, .05);
+$color__time-picker-cell-hover-txt: grayscale(255, 1);
 $color__time-picker-cell-active-bg: $theme-color;
-$color__time-picker-cell-active-txt: grayscale(50,1);
+$color__time-picker-cell-active-txt: grayscale(50, 1);

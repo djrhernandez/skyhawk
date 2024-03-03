@@ -1,16 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { fetchApi } from '../api/fetchApi'
-import { Charts } from '../components/Charts'
-import { Table } from '../components/Table'
 
-import { capitalize } from '../lib/utils'
-import * as searchStates from '../lib/states'
+import { Button } from '../components/Button'
+import { Card } from '../components/Card'
 
 export default function Dota2() {
 
 	return (
-		<div className="dashboard">
-			Dota 2 Page
-		</div>
+		<div className='container'>
+			<section>
+				Dota 2 Page
+			</section>
+			<section>
+				<Card title='Check Mate' content='LOSER BITCH'/>
+			</section>
+			<section>
+				<Button type='primary' label='TEST' onClick={null}/>
+			</section>
+		</div>	
 	)
 }

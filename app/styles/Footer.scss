@@ -1,0 +1,19 @@
+.footer {
+	background-color: #333;
+	color: #fff;
+	padding: 12.5px 0;
+	text-align: center;
+	font-size: calculateRem(12px);
+  
+	a {
+	  color: grayscale(112, 1);
+	  text-decoration: underline;
+	  font-weight: bold;
+	  transition: color 0.3s ease-in-out;
+  
+	  &:hover {
+		color: #5c6bc0;
+	  }
+	}
+  }
+  

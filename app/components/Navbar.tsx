@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import skyhawk from '../styles/images/skyhawk_logo.png'
+import skyhawk from '../styles/images/skyhawk_logo_v3.1.png'
 
 export const NavBar = (props) => {
 	return (
@@ -9,8 +9,8 @@ export const NavBar = (props) => {
 			<div className='navbar-home js-scroll-trigger'>
 				<a className='nav-logo-link' href='\'>
 					<div className='graphic'>
-						<Image 
-							src={skyhawk.src} 
+						<Image
+							src={skyhawk.src}
 							alt='Skyhawk Logo'
 							width={500}
 							height={500}
@@ -25,13 +25,13 @@ export const NavBar = (props) => {
 			<div className='container' id='responsive-navbar'>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='dota2'>Dota2</a>
-					</li>	
+						<a className='nav-link' href='dota2'>Dota 2</a>
+					</li>
 				</ul>
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='mock'>Mock</a>
-					</li>	
+						<a className='nav-link' href='sketchpad'>Canvas</a>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-export default function Dota2Layout({
+export default function NycodLayout({
 	children
 }: { children: React.ReactNode }) {
 	return (

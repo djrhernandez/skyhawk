@@ -11,7 +11,7 @@ export default function AppPage() {
   const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
   const [errors, setErrors] = useState('')
   const [apiData, setApiData] = useState()
-  
+
   // Data fetch with cache
   useEffect(() => {
     const cacheKey = 'apiDataCache';
@@ -68,14 +68,14 @@ const renderSuccess = (data, pageState) => (
 )
 
 const renderLoading = (data, pageState) => (
-	<div className='loading'>
+  <div className='loading'>
     <div className='header'>{`${capitalize(pageState)}...`}</div>
     <div className='body'>{`${data ? `Data: ${JSON.stringify(data)}` : '...'}`}</div>
   </div>
 )
 
 const renderError = (error, pageState) => (
-	<div className='error'>
+  <div className='error'>
     <div className='header'>{`${capitalize(pageState)}!`}</div>
     <div className='body'>{`Data: ${error}`}</div>
   </div>
