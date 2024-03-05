@@ -10,12 +10,12 @@
 	transition: box-shadow 0.3s ease-in-out;
 	
 	&:hover {
-		box-shadow: 0 5px 15px grayscale(0, 1);
+		box-shadow: 0 5px 10px grayscale(0, 1);
 	}
 
 	&_header {
 		padding: 10px;
-		background: bg-gradient(125deg);
+		background: bg-gradient(90deg, #{$chili-red}, #{$caramel}, #{$bronze}, #{$peach});
 		color: $font-color-light;
 		font-size: 1.1rem;
 		font-weight: bold;

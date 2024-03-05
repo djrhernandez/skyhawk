@@ -11,7 +11,7 @@ export default function Dota2() {
 				Dota 2 Page
 			</section>
 			<section>
-				<Card title='Check Mate' content='Hello World'/>
+				<Card title='Check Mate' body='Hello World'/>
 			</section>
 			<section>
 				<Button type='primary' label='Button' onClick={null}/>

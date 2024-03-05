@@ -22,17 +22,20 @@ export default function AppPage() {
 				<Card 
 					title='New York - OpenData' 
 					body={nycData}
-					primaryBody='Go' />
+					primaryBody='Go'
+				/>
 				
 				<Card 
 					title='Canvas' 
 					body={canvasData}
-					primaryBody='Go' />
+					primaryBody='Go'
+				/>
 
 				<Card 
 					title='Dota 2 Analytics' 
 					body={dota2Data}
-					primaryBody='Go' />
+					primaryBody='Go'
+				/>
 			</div>
 		</Wrapper>
 	)

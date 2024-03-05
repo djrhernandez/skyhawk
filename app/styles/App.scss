@@ -33,7 +33,7 @@ section {
 
 .app {
 	min-height: 100vh;
-	background: $background-dark;
+	background: bg-gradient(180deg, #{$penn-red}, #{$brick-red});
 	background-size: $background-size;
 }
 

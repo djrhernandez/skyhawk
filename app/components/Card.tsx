@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-export const Card = ({ title, body, primaryBody, onPrimaryClick = null, secondaryBtn = false, secondaryBody = null, onSecondaryClick = null }) => {
+export const Card = ({ title, body, primaryBody = null, onPrimaryClick = null, secondaryBtn = false, secondaryBody = null, onSecondaryClick = null }) => {
 	return (
 		<div className="card">
 			<div className="card_header">

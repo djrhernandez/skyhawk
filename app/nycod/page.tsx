@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { fetchApi } from '../api/fetchApi'
 import { Charts } from '../components/Charts'
 import { Table } from '../components/Table'
-import { Wrapper } from '../components/Wrapper'
 
 import { capitalize } from '../lib/utils'
 import * as searchStates from '../lib/states'
@@ -63,6 +62,9 @@ export default function Page() {
 
 const renderSuccess = (data, pageState) => (
 	<div className='data-content'>
+		<div className=''>
+			<p>New York City - Hotel Properties Citywide</p>
+		</div>
 		<Charts data={data} pageState={pageState} />
 		<Table data={data} pageState={pageState} />
 	</div>
