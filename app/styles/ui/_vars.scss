@@ -3,17 +3,49 @@
 	@return rgba($rgb, $rgb, $rgb, $a);
 }
 
+@function bg-gradient($deg, $colors...) {
+	@if length($colors)==0 {
+		$colors: $penn-red, $chili-red;
+	}
+
+	@return linear-gradient($deg, $colors);
+}
+
+/* Colors */
+// Rich Reds
+$penn-red: #960200;
+$brick-red: #A52A2A;
+$chili-red: #CB462B;
+
+// Warm Oranges
+$caramel: #D37D34;
+$tangerine: #FFA07A;
+
+// Golden Tones
+$gold: #FFD700;
+$bronze: #CD7F32;
+
+// Soft Oranges
+$peach: #FFDA89;
+$coral: #FF7F50;
+
+// Accent Colors
+$accent-orange: #FF8C00;
+$accent-red: #FF6347;
+
 /* Background/Theme */
 $background-size: 100% 100%;
-$background-gradient: linear-gradient(180deg, #960200, #CB462B, #DBB43D);
-$background-light: #eee;
-$background-dark: #222;
+$background-gradient: bg-gradient(180deg);
+$background-light: #fff;
+$background-mid: #888;
+$background-dark: #333;
+$background-darkest: #111;
 $theme-color: #828282;
 $theme-color-active-txt: #323232;
 $theme-active-brightness: 0;
 
 /* Layouts */
-$border-radius: 3px;
+$border-radius: 5px;
 
 /* Spacing */
 $full-space: 40px;
@@ -21,6 +53,7 @@ $half-space: 20px;
 
 /* Font Colors/Sizing */
 $font-color-dark: #333;
+$font-color-mid: #666;
 $font-color-light: #fff;
 $font-size--xs: 10px;
 $font-size--sm: 12px;
@@ -42,7 +75,7 @@ $menu-btn-on-color: #777;
 /* Buttons */
 $btn-transition-dur: .25s;
 
-/* App Loager */
+/* App Loader */
 $app-loader-title-color: #fff;
 $app-loader-message-color: grayscale(150, 1);
 $app-loader-bg-color: grayscale(0, .9);

@@ -62,6 +62,13 @@ Usage:
   align-items: center;
 }
 
+@mixin grid-layout($columns, $rows, $gap: 0px) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+  grid-gap: $gap;
+}
+
 /* --- breakpoints ---------------------------------------------------------------
 When Sass 3.2 was released some time ago, they made it possible to define names 
 for media queries, which makes the usage of them a lot cleaner. Instead of calling 

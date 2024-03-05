@@ -1,17 +1,26 @@
 'use client'
 import React from 'react'
 
-export const Card = ({ title, content, onPrimaryClick = null, onSecondaryClick = null }) => {
+export const Card = ({ title, body, primaryBody, onPrimaryClick = null, secondaryBtn = false, secondaryBody = null, onSecondaryClick = null }) => {
 	return (
 		<div className="card">
-			<div className="card__header">{title}</div>
-			<div className="card__body">
-				<p>{content}</p>
+			<div className="card_header">
+				{title}
 			</div>
-			<div className="card__footer">
-				<button className="primary" onClick={onPrimaryClick}>Primary</button>
-				<button className="secondary" onClick={onSecondaryClick}>Secondary</button>
+
+			<div className="card_body">
+				<p>{body}</p>
 			</div>
+
+			{ primaryBody && (
+				<div className="card_footer">
+					<button className="primary" onClick={onPrimaryClick}>{primaryBody}</button>
+					{ secondaryBtn && (
+						<button className="secondary" onClick={onSecondaryClick}>{secondaryBody}</button>
+					)}
+				</div>
+
+			)}
 		</div>
 	)
 }

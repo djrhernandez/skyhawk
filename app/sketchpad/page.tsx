@@ -4,8 +4,8 @@ import { Wrapper } from '../components/Wrapper'
 export default function Page() {
 
 	return (
-		<Wrapper>
+		<div className='page-sketch'>
 			<p>Sketchpad/Canvas Page</p>
-		</Wrapper>
+		</div>
 	)
 }

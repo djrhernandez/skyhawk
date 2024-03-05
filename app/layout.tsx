@@ -23,14 +23,11 @@ export default function RootLayout({
 		<html lang="en" className='antialiased' suppressHydrationWarning>
 			<body className={inter.className}>
 				<Providers>
-					
 					<div className='app'>
 						<NavBar />
 						{children}
 					</div>
-
 					<Footer />
-
 				</Providers>
 				<Analytics />
 			</body>

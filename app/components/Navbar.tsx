@@ -1,19 +1,19 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import skyhawk from '../styles/images/skyhawk_logo_v3.1.png'
+import skyhawk from '../styles/images/skyhawk_logo_v3_256.png'
 
 export const NavBar = (props) => {
 	return (
 		<div className='navbar'>
 			<div className='navbar-home js-scroll-trigger'>
-				<a className='nav-logo-link' href='\'>
+				<a className='nav-logo-link' href='nycod'>
 					<div className='graphic'>
 						<Image
 							src={skyhawk.src}
 							alt='Skyhawk Logo'
-							width={500}
-							height={500}
+							width={48}
+							height={48}
 							priority={true}
 						/>
 					</div>
@@ -25,9 +25,16 @@ export const NavBar = (props) => {
 			<div className='container' id='responsive-navbar'>
 				<ul className='nav-item'>
 					<li>
+						<a className='nav-link' href='nycod'>NYC-Data</a>
+					</li>
+				</ul>
+
+				<ul className='nav-item'>
+					<li>
 						<a className='nav-link' href='sketchpad'>Canvas</a>
 					</li>
 				</ul>
+				
 				<ul className='nav-item'>
 					<li>
 						<a className='nav-link' href='dota2'>Dota 2</a>

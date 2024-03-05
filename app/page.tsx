@@ -1,83 +1,39 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
-import { fetchApi } from './api/fetchApi'
-import { Charts } from './components/Charts'
-import { Table } from './components/Table'
+import { Card } from './components/Card'
 import { Wrapper } from './components/Wrapper'
 
-import { capitalize } from './lib/utils'
-import * as searchStates from './lib/states'
-
 export default function AppPage() {
-  const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
-  const [errors, setErrors] = useState('')
-  const [apiData, setApiData] = useState()
+	const nycData = `Explore fascinating insights from freely available ` +
+	`public data on hotels and properties across the five boroughs within ` + 
+	`New York City`
 
-  // Data fetch with cache
-  useEffect(() => {
-    const cacheKey = 'apiDataCache';
-    const cachedData = localStorage.getItem(cacheKey);
+	const canvasData = `Experience an interactive whiteboard, where ` + 
+	`collaboration and creativity come alive with just a click. Dive ` +
+	`into a seamless world of digital collaboration, right from your browser`
 
-    const fetchData = async () => {
-      try {
-        setPageState(searchStates.LOADING);
-        let params = { '$limit': 5000 };
-        const data = await fetchApi(null, '/resource/tjus-cn27.json', params);
+	const dota2Data = `Dive into the world of Dota 2 analytics to elevate ` + 
+	`your gameplay with comprehensive insight. Unlock the secrets to mastering ` +
+	`strategies, optimizing performance, and achieving victory in every match`
 
-        setApiData(data);
-        setPageState(searchStates.SUCCESS);
+	return (
+		<Wrapper>
+			<div className='home-grid'>
+				<Card 
+					title='New York - OpenData' 
+					body={nycData}
+					primaryBody='Go' />
+				
+				<Card 
+					title='Canvas' 
+					body={canvasData}
+					primaryBody='Go' />
 
-        const cache = {
-          data: data,
-          timestamp: new Date().getTime(),
-        };
-        localStorage.setItem(cacheKey, JSON.stringify(cache));
-      } catch (error) {
-        setErrors(error);
-        setPageState(searchStates.FAILURE);
-      }
-    };
-
-    if (cachedData) {
-      const { data, timestamp } = JSON.parse(cachedData);
-      const age = (new Date().getTime() - timestamp) / 1000 / 60; // Age in minutes
-
-      if (age < 60) {
-        setApiData(data);
-        setPageState(searchStates.SUCCESS);
-        return;
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  return (
-    <div className="dashboard">
-      {pageState === searchStates.SUCCESS && renderSuccess(apiData, pageState)}
-      {pageState === searchStates.LOADING && renderLoading(apiData, pageState)}
-      {pageState === searchStates.FAILURE && renderError(errors, pageState)}
-    </div>
-  )
+				<Card 
+					title='Dota 2 Analytics' 
+					body={dota2Data}
+					primaryBody='Go' />
+			</div>
+		</Wrapper>
+	)
 }
-
-const renderSuccess = (data, pageState) => (
-  <Wrapper>
-    <Charts data={data} pageState={pageState} />
-    <Table data={data} pageState={pageState} />
-  </Wrapper>
-)
-
-const renderLoading = (data, pageState) => (
-  <div className='loading'>
-    <div className='header'>{`${capitalize(pageState)}...`}</div>
-    <div className='body'>{`${data ? `Data: ${JSON.stringify(data)}` : '...'}`}</div>
-  </div>
-)
-
-const renderError = (error, pageState) => (
-  <div className='error'>
-    <div className='header'>{`${capitalize(pageState)}!`}</div>
-    <div className='body'>{`Data: ${error}`}</div>
-  </div>
-)

@@ -1,63 +1,65 @@
 .card {
-	background: #fff;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: box-shadow 0.3s ease-in-out;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-  
+	overflow: hidden;
+
+	background: $background-light;
+	border-radius: $border-radius;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+	transition: box-shadow 0.3s ease-in-out;
+	
 	&:hover {
-	  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 5px 15px grayscale(0, 1);
 	}
-  
-	&__header {
-	  padding: 16px;
-	  background: linear-gradient(145deg, #6e48aa, #9d50bb);
-	  color: #fff;
-	  font-size: 1.25rem;
-	  font-weight: bold;
-	}
-  
-	&__body {
-	  padding: 16px;
-	  flex: 1;
-  
-	  p {
-		margin: 0;
-		line-height: 1.5;
-		color: #666;
-	  }
-	}
-  
-	&__footer {
-	  padding: 16px;
-	  background: #f8f8f8;
-	  display: flex;
-	  justify-content: flex-end;
-	  gap: 8px;
-  
-	  button {
-		padding: 8px 16px;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
+
+	&_header {
+		padding: 10px;
+		background: bg-gradient(125deg);
+		color: $font-color-light;
+		font-size: 1.1rem;
 		font-weight: bold;
-  
-		&.primary {
-		  background-color: #5c6bc0;
-		  color: white;
-		}
-  
-		&.secondary {
-		  background-color: #eeeeee;
-		  color: #666;
-		}
-  
-		&:hover {
-		  opacity: 0.9;
-		}
-	  }
 	}
-  }
+
+	&_body {
+		flex: 1;
+		padding: 16px;
+
+		p {
+			margin: 0;
+			line-height: 1.25;
+			color: $font-color-mid;
+		}
+	}
+
+	&_footer {
+		display: flex;
+		justify-content: space-evenly;
+		gap: 8px;
+
+		padding: 5px;
+		background: #f8f8f8;
+
+		button {
+			padding: 7px 14px;
+			border-radius: 4px;
+			font-weight: bold;
+			cursor: pointer;
+
+			&.primary {
+				background-color: $background-dark;
+				color: $font-color-light;
+			}
+
+			&.secondary {
+				background-color: $font-color-light;
+				color: $font-color-mid;
+				border: 1px solid grayscale(0, 0.25);
+			}
+
+			&:hover {
+				opacity: 0.75;
+			}
+		}
+	}
+}

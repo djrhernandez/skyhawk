@@ -18,8 +18,8 @@
 
 	.navbar-home {
 		.nav-logo-link {
-			margin: 5px auto;
-			padding: 0px 3px;
+			margin: auto;
+			padding: 0px 2.5px;
 		}
 
 		a {
@@ -37,6 +37,7 @@
 			}
 			
 			.graphic {
+				margin: 0 auto;
 				padding-right: 0.5rem;
 
 				@include bp-medium {
@@ -67,6 +68,7 @@
 		// TODO: REPLACE LINKS WITH HAMBURGER MENU FOR MOBILES
 		.nav-link {
 			&:hover {
+				text-decoration: underline;
 				
 			}
 		}
