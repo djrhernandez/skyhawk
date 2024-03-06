@@ -28,7 +28,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 			defaultColumnDefs.suppressMovable = false
 			setHeaderColumns(propertyColumnsDetailed)
 		}
-	}, [pageWidth, pageHeight, defaultColumnDefs])
+	}, [pageWidth, pageHeight])
 
 	return (
 		<div className='sky-table'>
