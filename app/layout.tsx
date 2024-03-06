@@ -4,6 +4,8 @@ import './styles/App.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react';
+import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Providers } from './providers'
 import { NavBar } from './components/Navbar'
@@ -22,15 +24,19 @@ export default function RootLayout({
 	return (
 		<html lang="en" className='antialiased' suppressHydrationWarning>
 			<body className={inter.className}>
-				<Providers>
-					<div className='app'>
+				<div className='app'>
+					<Providers>
 						<NavBar />
-						{children}
-					</div>
-					<Footer />
-				</Providers>
-				<Analytics />
+						<div className='dashboard'>
+							{children}
+						</div>
+						<Footer />
+					</Providers>
+					<Analytics />
+				</div>
 			</body>
+			<GoogleTagManager gtmId='G-QHS7SXXJPB' />
+			<GoogleAnalytics gaId='G-QHS7SXXJPB' />
 		</html>
 	)
 }

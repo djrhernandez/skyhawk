@@ -26,15 +26,15 @@ Usage:
 }
 
 .some-component {
-  font-size: calculateRem(12px);
+  font-size: calculate-rem(12px);
 }
 */
-@function calculateRem($size) {
+@function calculate-rem($size) {
   $remSize: $size / 16px;
   @return $remSize * 1rem;
 }
 
-@mixin fontSize($size) {
+@mixin font-size($size) {
   font-size: $size;
 }
 

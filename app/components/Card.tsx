@@ -19,7 +19,6 @@ export const Card = ({ title, body, primaryBody = null, onPrimaryClick = null, s
 						<button className="secondary" onClick={onSecondaryClick}>{secondaryBody}</button>
 					)}
 				</div>
-
 			)}
 		</div>
 	)

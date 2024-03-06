@@ -5,7 +5,6 @@
 	grid-gap: 5px;
 	margin-bottom: 20px;
 
-
 	@include bp-large {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto;

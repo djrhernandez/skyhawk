@@ -7,7 +7,7 @@ export const NavBar = (props) => {
 	return (
 		<div className='navbar'>
 			<div className='navbar-home js-scroll-trigger'>
-				<a className='nav-logo-link' href='nycod'>
+				<a className='nav-logo-link' href='/'>
 					<div className='graphic'>
 						<Image
 							src={skyhawk.src}
@@ -31,7 +31,7 @@ export const NavBar = (props) => {
 
 				<ul className='nav-item'>
 					<li>
-						<a className='nav-link' href='sketchpad'>Canvas</a>
+						<a className='nav-link' href='sketchpad'>Sketchpad</a>
 					</li>
 				</ul>
 				

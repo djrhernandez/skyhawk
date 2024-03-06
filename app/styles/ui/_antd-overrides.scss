@@ -74,11 +74,11 @@
 
 		th {
 			color: #fff;
-			background-color: $color__time-picker-column-bg
+			background-color: $color_time-picker-column-bg
 		}
 
 		td {
-			background-color: $color__time-picker-column-bg;
+			background-color: $color_time-picker-column-bg;
 		}
 	}
 
@@ -113,12 +113,12 @@
 }
 
 .ant-picker-panel-container {
-	background-color: $color__time-picker-bg !important;
+	background-color: $color_time-picker-bg !important;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, .5);
 }
 
 .ant-picker-time-panel-column {
-	background-color: $color__time-picker-column-bg !important;
+	background-color: $color_time-picker-column-bg !important;
 	border: none;
 
 	&:not(:first-child) {
@@ -139,14 +139,14 @@
 	>li {
 		&.ant-picker-time-panel-cell {
 			.ant-picker-time-panel-cell-inner {
-				color: $color__time-picker-cell-txt !important;
+				color: $color_time-picker-cell-txt !important;
 			}
 
 			&:hover {
 				&:not(.ant-picker-time-panel-cell-selected) {
 					.ant-picker-time-panel-cell-inner {
-						background-color: $color__time-picker-cell-hover-bg !important;
-						color: $color__time-picker-cell-hover-txt !important;
+						background-color: $color_time-picker-cell-hover-bg !important;
+						color: $color_time-picker-cell-hover-txt !important;
 					}
 				}
 			}
@@ -154,8 +154,8 @@
 
 		&.ant-picker-time-panel-cell-selected {
 			.ant-picker-time-panel-cell-inner {
-				background-color: $color__time-picker-cell-active-bg !important;
-				color: $color__time-picker-cell-active-txt !important;
+				background-color: $color_time-picker-cell-active-bg !important;
+				color: $color_time-picker-cell-active-txt !important;
 			}
 		}
 	}

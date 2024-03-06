@@ -1,0 +1,54 @@
+.text-item {
+	min-height: 1rem;
+	padding-top: 15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	background-color: transparent;
+	overflow-y: auto;
+
+	.title,
+	.message {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		align-self: center;
+		width: 100%;
+		padding: 0;
+	}
+
+	.title {
+		text-align: center;
+	}
+
+	.message {
+		@include font-size(12px);
+	}
+
+	.center {
+		width: 100%;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 1;
+
+		h1 {
+			justify-content: center !important;
+			align-items: center !important;
+			color: $font-color-light;
+			line-height: 24px;
+			word-break: break-all;
+			@include font-size(20px);
+		}
+
+		small {
+			color: $font-color-mid;
+		}
+	}
+
+	span {
+		color: #999;
+	}
+}
