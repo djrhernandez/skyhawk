@@ -1,75 +1,79 @@
 .navbar {
-	display: grid;
-	grid-template-columns: 4rem 1fr;
+	display: flex;
+	flex-direction: column;
 	background-color: black;
-	padding: 0.25rem 0;
+	padding: 0;
+
+	@include bp-medium {
+		@include grid-layout(1fr, 1fr 9fr);
+	}
+
+	@include bp-large {
+		@include font-size(14px);
+	}
 
 	ul, li {
 		margin: 0;
 	}
 
-	@include bp-small {
-		grid-template-columns: 5rem 1fr;
-	}
-
-	@include bp-medium {
-		grid-template-columns: 10rem 1fr;
-	}
-
 	.navbar-home {
-		.nav-logo-link {
-			margin: auto;
-			padding: 0px 2.5px;
+		@include flex-container(space-between, row, center);
+		padding: 10px 0px;
+		margin: 0px 7.5px;
+
+		@include bp-medium {
+			@include flex-container(center, column);
 		}
 
-		a {
-			display: grid;
-			grid-template-columns: 1fr;
-			border-right: 1px solid $theme-color;
-			text-align: center;
-
-			@include bp-small {
-				grid-template-columns: 1fr;
-			}
+		.nav-logo {
+			@include flex-container(flex-start, row, center);
 
 			@include bp-medium {
-				grid-template-columns: 1fr 1fr;
-			}
-			
-			.graphic {
-				margin: 0 auto;
-				padding-right: 0.5rem;
-
-				@include bp-medium {
-					padding-right: initial;
-				}
+				@include flex-container(center, column);
 			}
 
 			.graphic-title {
-				display: none;
+				margin-left: 0.5rem;
 
 				@include bp-medium {
-					display: initial;
-					margin: auto;
-					text-align: center;
+					margin-left: 0rem;
+					margin-top: 0.75rem;
 				}
+			}
+		}
+
+		.menu-toggle {
+			@include flex-container(center, column);
+			padding: 5px 10px;
+			margin: auto 5px;
+			border-radius: $border-radius;
+			background-color: $menu-btn-off-color;
+			@include transition(background-color .5s ease);
+
+			&:hover {
+				background-color: $menu-btn-on-color;
 			}
 		}
 	}
 
 	.container {
-		@include flex-container(flex-start, row);
-
+		@include flex-container(left, column);
+		width: initial;
+		margin: 0px 10px;
+		border-top: 1px solid $theme-color;
+  
 		.nav-item {
-			padding: 0 1rem;
+			margin-bottom: 1rem;
+
+			&:first-child {
+				margin-top: 1rem;
+			}
 		}
 
-		// TODO: ADD HOVER FEATURES TO LINKS
-		// TODO: REPLACE LINKS WITH HAMBURGER MENU FOR MOBILES
+
 		.nav-link {
 			&:hover {
 				text-decoration: underline;
-				
 			}
 		}
 	}

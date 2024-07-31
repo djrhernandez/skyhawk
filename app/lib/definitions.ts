@@ -106,18 +106,18 @@ export const propertyColumnsDetailed = [
                 columnGroupShow: 'open'
             },
             {
-                headerName: 'BBL #',
+                headerName: 'Borough-Block-Lot (BBL) #',
                 field: 'bbl',
-                headerTooltip: 'Borough-Block-Lot (location of buildings/properties used for paying property taxes)',
+                headerTooltip: 'Location of buildings/properties (used for paying property taxes)',
                 columnGroupShow: 'open'
             },
             {
-                headerName: 'Year',
+                headerName: 'Tax Year',
                 field: 'taxyear',
                 columnGroupShow: 'open'
             },
             {
-                headerName: 'Class',
+                headerName: 'Tax Class',
                 field: 'taxclass',
                 columnGroupShow: 'open'
             },

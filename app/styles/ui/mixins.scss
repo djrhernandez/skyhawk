@@ -47,13 +47,24 @@ Usage:
   margin: auto;
   ...
 }
+
+OR
+
+.some-component {
+  @include grid-layout(repeat(3, 1fr), auto, 50px);
+  margin: auto;
+  ...
+}
 */
-@mixin flex-container($justify, $direction) {
+@mixin flex-container($justify, $direction, $align: normal) {
   display: flex;
   flex-wrap: wrap;
   flex-direction: $direction;
   justify-content: $justify;
-  align-items: center;
+
+  @if $align != normal {
+    align-items: $align;
+  }
 }
 
 @mixin flex-center {
@@ -92,32 +103,38 @@ bp-medium   - 640px+
 bp-small    - 480px+
 bp-mobile   - 320px+
 */
+
+// 80em * 16
 @mixin bp-xlarge {
-  @media only screen and (min-width: 80em) {
+  @media only screen and (min-width: 1280px) { 
     @content;
   }
 }
 
+// 60em * 16
 @mixin bp-large {
-  @media only screen and (min-width: 60em) {
+  @media only screen and (min-width: 960px) {
     @content;
   }
 }
 
+// 40em * 16
 @mixin bp-medium {
-  @media only screen and (min-width: 40em) {
+  @media only screen and (min-width: 640px) {
     @content;
   }
 }
 
+// 30em * 16
 @mixin bp-small {
-  @media only screen and (min-width: 30em) {
+  @media only screen and (min-width: 480px) {
     @content;
   }
 }
 
+// 20em * 16
 @mixin bp-mobile {
-  @media only screen and (min-width: 20em) {
+  @media only screen and (min-width: 320px) {
     @content;
   }
 }
@@ -136,24 +153,6 @@ Usage:
   height: 100px;
   background: black;
   @include animation('slide-down 5s 3');
-}
-
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes $animation-name {
-    @content;
-  }
-  @-moz-keyframes $animation-name {
-    @content;
-  }
-  @-ms-keyframes $animation-name {
-    @content;
-  }
-  @-o-keyframes $animation-name {
-    @content;
-  }
-  @keyframes $animation-name {
-    @content;
-  }
 }
 */
 @mixin keyframes($animation-name) {
@@ -189,8 +188,9 @@ Usage:
   a {
       color: gray;
       @include transition(color .3s ease);
+
       &:hover {
-      color: black;
+        color: black;
       }
   }
 */

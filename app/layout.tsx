@@ -9,7 +9,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Providers } from './providers'
 import { NavBar } from './components/Navbar'
-import { Footer } from './components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +29,6 @@ export default function RootLayout({
 						<div className='dashboard'>
 							{children}
 						</div>
-						<Footer />
 					</Providers>
 					<Analytics />
 				</div>
