@@ -192,7 +192,7 @@ const ChartTick = (props: { x: any; y: any; payload: any }) => {
 	return (
 		<g transform={`translate(${x},${y + 4})`}>
 			{/* Map through the words and render each on a new line */}
-			{text.map((word: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode, index: number) => (
+			{text.map((word: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal, index: number) => (
 				<text
 					key={`${word}-${index}`}
 					x={offsetX}
