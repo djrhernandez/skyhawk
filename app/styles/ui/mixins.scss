@@ -73,7 +73,7 @@ OR
   align-items: center;
 }
 
-@mixin grid-layout($columns, $rows, $gap: 0px) {
+@mixin grid-layout($columns: 1fr, $rows: 1fr, $gap: 0px) {
   display: grid;
   grid-template-columns: $columns;
   grid-template-rows: $rows;

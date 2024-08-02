@@ -1,25 +1,24 @@
 .navbar {
-	display: flex;
-	flex-direction: column;
-	background-color: black;
+	@include flex-container(flex-start, column);
 	padding: 0;
+	background-color: black;
+
+	ul, li {
+		margin: 0;
+	}
 
 	@include bp-medium {
-		@include grid-layout(1fr, 1fr 9fr);
+		@include grid-layout(auto, 1fr 5fr);
 	}
 
 	@include bp-large {
 		@include font-size(14px);
 	}
 
-	ul, li {
-		margin: 0;
-	}
-
 	.navbar-home {
 		@include flex-container(space-between, row, center);
-		padding: 10px 0px;
 		margin: 0px 7.5px;
+		padding: 10px 0px;
 
 		@include bp-medium {
 			@include flex-container(center, column);
@@ -36,16 +35,16 @@
 				margin-left: 0.5rem;
 
 				@include bp-medium {
-					margin-left: 0rem;
 					margin-top: 0.75rem;
+					margin-left: 0rem;
 				}
 			}
 		}
 
 		.menu-toggle {
 			@include flex-container(center, column);
+			margin: 0px 5px;
 			padding: 5px 10px;
-			margin: auto 5px;
 			border-radius: $border-radius;
 			background-color: $menu-btn-off-color;
 			@include transition(background-color .5s ease);
@@ -69,7 +68,6 @@
 				margin-top: 1rem;
 			}
 		}
-
 
 		.nav-link {
 			&:hover {
