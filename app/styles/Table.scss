@@ -2,8 +2,7 @@
 	padding-bottom: 1rem;
 
 	.page {
-		display: grid;
-		grid-template-columns: 10fr 2fr;
+		@include grid-layout(10fr 2fr);
 		background-color: ghostwhite;
 		color: black;
 		padding: 7.5px;

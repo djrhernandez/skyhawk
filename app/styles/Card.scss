@@ -1,9 +1,6 @@
 .card {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	@include flex-container(space-between, column);
 	overflow: hidden;
-
 	background: $background-light;
 	border-radius: $border-radius;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
@@ -33,13 +30,10 @@
 	}
 
 	&_footer {
-		display: flex;
-		justify-content: space-evenly;
-		gap: 8px;
-
+		@include flex-container(space-evenly, column, center);
 		padding: 5px;
-		background: #f8f8f8;
-
+		background: #f9f9f9;
+		
 		button {
 			padding: 7px 14px;
 			border-radius: 4px;
@@ -52,8 +46,8 @@
 			}
 
 			&.secondary {
-				background-color: $font-color-light;
-				color: $font-color-mid;
+				background-color: $background-light;
+				color: $font-color-dark;
 				border: 1px solid grayscale(0, 0.25);
 			}
 
