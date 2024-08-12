@@ -53,8 +53,7 @@ section {
 }
 
 .home-grid {
-	@include grid-layout(auto, repeat(3, 1fr), 50px);
-	padding: 2.5rem;
+	@include grid-layout(auto, repeat(3, 1fr), 25px);
 
 	@include bp-xlarge {
 		@include grid-layout(repeat(3, 1fr), auto, 50px);
@@ -102,7 +101,7 @@ section {
 }
 
 .error {
-	@include grid-layout(1fr);
+	@include grid-layout(1fr);  
 	background-color: $background-darkest;
 	border-radius: 5px;
 	color: red;

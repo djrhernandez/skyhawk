@@ -9,7 +9,7 @@
 	}
 
 	@include bp-medium {
-		@include grid-layout(1fr, 1fr 5fr);
+		@include grid-layout(1fr, 1fr 8fr);
 	}
 
 	@include bp-large {
@@ -18,11 +18,11 @@
 
 	.navbar-home {
 		@include flex-container(space-between, row, center);
-		margin: 0px 7.5px;
-		padding: 10px 0px;
+		margin: 15px;
 
 		@include bp-medium {
 			@include flex-container(center, column);
+			margin: initial;
 		}
 
 		.nav-logo {

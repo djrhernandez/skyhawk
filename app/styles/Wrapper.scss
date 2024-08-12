@@ -1,4 +1,8 @@
 .content-wrapper {
 	height: 100%;
-	padding: 0 2rem;
+	margin: 15px;
+
+	@include bp-mobile {
+		padding: 0 2rem;
+	}
 }

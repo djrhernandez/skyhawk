@@ -11,6 +11,16 @@ const getChartColors = (ctype: string | number) => {
 	return decidedGraphColors[ctype]
 } 
 
+/*	TODO: 
+	As of 06/09/23 - XAxis and YAxis: 
+	Support for defaultProps will be removed from function components in a future major release. 
+	Use JavaScript default parameters instead.
+
+	Will need to use the alpha version from 2.12 or 2.13 soon. Currently on ^2.9.0
+	`npm ls recharts; npm i recharts@alpha`
+
+	Ref: https://github.com/recharts/recharts/issues/3615
+*/
 export const Charts = ({ data, pageState }: any, props: any) => {
 	return (
 		<div className='charts' data-testid='charts'>

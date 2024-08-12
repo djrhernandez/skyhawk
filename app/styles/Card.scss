@@ -18,14 +18,54 @@
 		font-weight: bold;
 	}
 
+	&_image {
+		@include flex-container(center, row);
+
+		@include bp-medium {
+			margin: 5px;
+		}
+	}
+
 	&_body {
-		flex: 1;
-		padding: 16px;
+		@include grid-layout(1fr, 1fr 2fr);
+
+		@include bp-mobile {
+			@include grid-layout(1fr, 3fr 4fr);
+		}
+
+		@include bp-small {
+			@include grid-layout(1fr, 3fr);
+		}
+
+		@include bp-medium {
+			@include grid-layout(4fr 10fr);
+		}
+
+		@include bp-xlarge {
+			@include grid-layout(1fr, 1fr);
+		}
+	}
+
+	&_text {
+		margin: 10px 10px 0px 10px;
+
+		@include bp-mobile {
+			margin: 10px 25px 0px 25px;
+		}
+
+		@include bp-small {
+			margin: 15px;
+		}
 
 		p {
-			margin: 0;
+			margin: 15px;
 			line-height: 1.25;
 			color: $font-color-mid;
+
+			@include bp-mobile {
+				margin: 0;
+			}
+
 		}
 	}
 
