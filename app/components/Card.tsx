@@ -13,7 +13,7 @@ export const Card = ({ title, body, buttonText = null, image = null, onPrimaryCl
 				{/* TODO: Create space for image either below or next to text */}
 				<div className='card_image'>
 					<Image
-						src={image.src}
+						src={image && image.src}
 						alt='Logo'
 						width={isMobile ? 96 : 128}
 						height={isMobile ? 96 : 128}
