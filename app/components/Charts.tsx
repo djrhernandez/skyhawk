@@ -11,16 +11,6 @@ const getChartColors = (ctype: string | number) => {
 	return decidedGraphColors[ctype]
 } 
 
-/*	TODO: 
-	As of 06/09/23 - XAxis and YAxis: 
-	Support for defaultProps will be removed from function components in a future major release. 
-	Use JavaScript default parameters instead.
-
-	Will need to use the alpha version from 2.12 or 2.13 soon. Currently on ^2.9.0
-	`npm ls recharts; npm i recharts@alpha`
-
-	Ref: https://github.com/recharts/recharts/issues/3615
-*/
 export const Charts = ({ data, pageState }: any, props: any) => {
 	return (
 		<div className='charts' data-testid='charts'>
@@ -33,35 +23,32 @@ export const Charts = ({ data, pageState }: any, props: any) => {
 
 const renderGraphs = (pageState: string, data: any, props: any) => {
 	const layout = rechartsLayout
-	const boroughlist = data.reduce((acc: { [x: string]: number }, item: { parid: any; borough: string }) => {
-		if (!item.parid || !item.borough || ['1', '2'].includes(item.borough)) return acc
+	const boroughlist = data && data.reduce((acc: { [x: string]: number }, item: { parid: any; borough: string }) => {
+		if (!item.parid || !item.borough || ['1', '2', '3'].includes(item.borough)) return acc
 		if (!acc[item.borough]) acc[item.borough] = 0
 		acc[item.borough] += 1
 		return acc
 	}, {})
 
-	const buildingList = data.reduce((acc: { [x: string]: number }, item: { parid: any; bldg_class: any }) => {
+	const buildingList = data && data.reduce((acc: { [x: string]: number }, item: { parid: any; bldg_class: any }) => {
 		if (!item.parid || !item.bldg_class) return acc
-
-		let bldg = item.bldg_class
-		if (!acc[bldg]) acc[bldg] = 0
-		acc[bldg] += 1
+		if (!acc[item.bldg_class]) acc[item.bldg_class] = 0
+		acc[item.bldg_class] += 1
 		return acc
 	}, {})
 
-	const boroughData = Object.keys(boroughlist)
-		.map((bucket) => ({ bucket, count: boroughlist[bucket], color: getChartColors(bucket) }))
-		.sort((a, b) => b.count - a.count)
+	const boroughData = Object.keys(boroughlist).map((bucket) => ({
+		bucket, count: boroughlist[bucket], color: getChartColors(bucket) 
+	})).sort((a, b) => b.count - a.count)
 
-	const buildingData = Object.keys(buildingList)
-		.map((bucket) => ({ bucket, count: buildingList[bucket], color: getChartColors(bucket) }))
-		.filter((item) => item.bucket !== 'RH')
-		.sort((a, b) => b.count - a.count)
+	const buildingData = Object.keys(buildingList).map((bucket) => ({
+		bucket, count: buildingList[bucket], color: getChartColors(bucket) 
+	})).filter((item) => item.bucket !== 'RH').sort((a, b) => b.count - a.count)
 	
 	if (!Object.keys(boroughData).length || !Object.keys(buildingData).length) return renderDataError()
 
 	return (
-		<div className='contents'>
+		<div className='chart-content'>
 			<div className='chart-wrapper'>
 				<div className='chart-header'>
 					<div className='header'>Properties/Borough</div>

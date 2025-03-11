@@ -2,14 +2,15 @@
 	@include flex-container(flex-start, column);
 	width: inherit;
 	padding: 0;
-	background-color: black;
+	background-color: $black;
+	border-color: none;
 
 	ul, li {
 		margin: 0;
 	}
 
 	@include bp-medium {
-		@include grid-layout(1fr, 1fr 8fr);
+		@include grid-layout(1fr, 1fr 20fr);
 	}
 
 	@include bp-large {
@@ -22,7 +23,7 @@
 
 		@include bp-medium {
 			@include flex-container(center, column);
-			margin: initial;
+			margin: 30px 0;
 		}
 
 		.nav-logo {

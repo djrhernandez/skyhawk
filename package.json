@@ -1,8 +1,8 @@
 {
   "name": "nextjs",
-  "description": "Hotel Dashboard that uses react and next.js and deployed on Vercel",
-  "version": "0.1.0",
-  "author": "David Hernandez",
+  "description": "A dashboard built with react and next.js, and is deployed on Render",
+  "version": "0.4.0",
+  "author": "David Hernandez <djrhernandez1@gmail.com>",
   "private": true,
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@ag-grid-community/react": "^30.2.1",
+    "@apollo/client": "^3.13.1",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
@@ -33,14 +33,15 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@vercel/analytics": "^1.1.1",
     "@vercel/postgres": "^0.9.0",
-    "ag-grid-community": "^30.2.1",
-    "ag-grid-react": "^30.2.1",
+    "ag-grid-community": "^33.1.1",
+    "ag-grid-react": "^33.1.1",
     "antd": "^5.11.1",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
     "framer-motion": "^10.16.5",
+    "graphql": "^16.10.0",
     "history": "^5.3.0",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
@@ -48,16 +49,18 @@
     "next": "^14.1.2",
     "next-themes": "^0.2.1",
     "percentile": "^1.6.0",
+    "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-gtm-module": "^2.0.11",
     "react-icons": "^4.12.0",
     "react-redux": "^8.1.3",
+    "react-router": "^7.2.0",
     "react-router-dom": "^6.19.0",
     "react-select": "^5.8.0",
     "react-switch": "^7.0.0",
-    "recharts": "^2.9.3",
+    "recharts": "^3.0.0-alpha.8",
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
@@ -67,6 +70,7 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.9",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
@@ -79,8 +83,8 @@
     "eslint-config-next": "14.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "postcss": "^8",
-    "tailwindcss": "^3",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }

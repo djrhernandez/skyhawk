@@ -1,12 +1,14 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { Card } from './components/Card'
 import { Wrapper } from './components/Wrapper'
 import { useRouter } from 'next/navigation'
 
-import nycImg from './images/nyc-liberty-logo-1024.png'
-import dotaImg from './images/dota2-logo-1024.png'
-import sketchpadImg from './images/sketchpad-icon.png'
+import nycImg from './styles/images/nyc-liberty-logo-1024.png'
+import dotaImg from './styles/images/dota2-logo-1024.png'
+import sketchpadImg from './styles/images/sketchpad-icon.png'
+
 
 export default function AppPage() {
 	const router = useRouter()
@@ -72,6 +74,9 @@ export default function AppPage() {
 					isMobile={isMobile}
 					onPrimaryClick={() => router.push('/dota2')}
 				/>
+			</div>
+			<div className='home-graphql'>
+				
 			</div>
 		</Wrapper>
 	)

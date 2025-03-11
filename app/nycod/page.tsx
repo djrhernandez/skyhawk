@@ -1,28 +1,39 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useQuery, useMutation } from '@apollo/client'
 import { fetchApi } from '../api/fetchApi'
 import { Charts } from '../components/Charts'
 import { Table } from '../components/Table'
 import { TextItem } from '../components/TextItem'
 
+import { GET_HOTELS } from '../lib/const'
 import { capitalize } from '../lib/utils'
 import * as searchStates from '../lib/states'
+
+process.on('uncaughtException', function (err) {
+	console.log('[UncaughtException]:', err)
+	console.log('Trace Stack: ', JSON.stringify({ err }))
+})
 
 export default function Page() {
 	const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
 	const [errors, setErrors] = useState('')
 	const [apiData, setApiData] = useState()
-	
-	// Data fetch with cache 
+
+	const { loading, error, data } = useQuery(GET_HOTELS)
+
+	// Data fetch with cache from direct NYCOD API
 	useEffect(() => {
 		const cacheKey = 'apiDataCache_v1'
 		const cachedData = localStorage.getItem(cacheKey)
+		const endpoint = 'resource/tjus-cn27.json'
 
+		// console.log('cachedData - ', cachedData)
 		const fetchData = async () => {
 			try {
 				setPageState(searchStates.LOADING)
 				let params = { '$limit': 5000 }
-				const data = await fetchApi(null, '/resource/tjus-cn27.json', params)
+				const data = await fetchApi('nycod', endpoint, params)
 
 				setApiData(data);
 				setPageState(searchStates.SUCCESS)
@@ -42,15 +53,23 @@ export default function Page() {
 			const { data, timestamp } = JSON.parse(cachedData)
 			const age = (new Date().getTime() - timestamp) / 1000 / 60 // Age in minutes
 
-			if (age < 60) {
+			if (age < 5) {
 				setApiData(data)
 				setPageState(searchStates.SUCCESS)
 				return
+			} else {
+				fetchData()
 			}
 		}
-
-		fetchData()
 	}, [])
+
+	useEffect(() => {
+		console.log({ loading, error, data })
+	}, [loading, error, data])
+
+	useEffect(() => {
+		console.log({ apiData, pageState })
+	}, [apiData, pageState])
 
 	return (
 		<div className='nycod'>
@@ -70,8 +89,16 @@ const renderSuccess = (data, pageState) => (
 			message={''}
 		/>
 		
-		<Charts data={data} pageState={pageState} />
-		<Table data={data} pageState={pageState} />
+		{ data && (<Charts data={data} pageState={pageState} />)}
+		{ data && (<Table data={data} pageState={pageState} />)}
+
+		{ !data && (
+			<div className='error'>
+				<div className='header'>{`No Data Available!`}</div>
+				<div className='body'>{`Data: ${data}`}</div>
+			</div>
+		)}
+
 	</div>
 )
 

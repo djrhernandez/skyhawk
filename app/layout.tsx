@@ -17,9 +17,7 @@ export const metadata: Metadata = {
 	description: 'Generated with React and Next.js, Deployed on Vercel',
 }
 
-export default function RootLayout({
-	children
-}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" className='antialiased' suppressHydrationWarning>
 			<body className={inter.className}>

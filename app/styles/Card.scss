@@ -24,7 +24,7 @@
 		@include bp-medium {
 			margin: 5px;
 		}
-	}
+	} 
 
 	&_body {
 		@include grid-layout(1fr, 1fr 2fr);

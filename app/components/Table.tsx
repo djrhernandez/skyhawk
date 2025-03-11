@@ -4,7 +4,15 @@ import { AgGridReact } from 'ag-grid-react'
 import { propertyColumns, propertyColumnsDetailed, defaultColumnDefs } from '../lib/definitions'
 import { useWindowSize } from '../lib/utils'
 
+// Upgrades to AG-Grid 33 requires migration from v30.2.1 and module registration
+// If not using Theming API, mark all grids as using legacy themes
+// Doc: https://www.ag-grid.com/react-data-grid/upgrading-to-ag-grid-33/
+import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community'; 
+ModuleRegistry.registerModules([ AllCommunityModule ]); 
+provideGlobalGridOptions({ theme: 'legacy'})
+
 export const Table = ({ data, pageState }: any, props: any) => {
+	const rowData = data
 	const gridRef = useRef<AgGridReact>(null)
 	const [pageWidth, pageHeight] = useWindowSize()
 	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
@@ -13,12 +21,15 @@ export const Table = ({ data, pageState }: any, props: any) => {
 		params.api.sizeColumnsToFit()
 	}, [])
 
-	const onPageSizeChanged = useCallback(() => {
-		let pageDiv = document.getElementById('page-size')
-		var value = pageDiv && (pageDiv as HTMLInputElement).value
+	// Handy Info: https://www.ag-grid.com/react-data-grid/grid-interface/#updating-grid-options
+	// const onPageSizeChanged = useCallback(() => {
+	// 	let pageDiv = document.getElementById('page-size')
+	// 	var value = pageDiv && (pageDiv as HTMLInputElement).value
 
-		gridRef.current.api.paginationSetPageSize(Number(value))
-	}, [])
+	// 	gridRef.current.api.setGridOption('paginationPageSize', Number(value))
+	// }, [])
+
+	console.log({rowData})
 
 	useEffect(() => {
 		if (!!pageHeight && pageWidth < 960) {
@@ -40,7 +51,7 @@ export const Table = ({ data, pageState }: any, props: any) => {
 					</span>
 				</div>
 
-				<div className='page-tab'>
+				{/* <div className='page-tab'>
 					<span>Page Size:</span>
 					<select onChange={onPageSizeChanged} id="page-size">
 						<option value="10">10</option>
@@ -48,18 +59,17 @@ export const Table = ({ data, pageState }: any, props: any) => {
 						<option value="50">50</option>
 						<option value="100">100</option>
 					</select>
-				</div>
+				</div> */}
 			</div>
 
 			<div className='ag-theme-balham'>
 				<AgGridReact
 					ref={gridRef}
-					rowData={data}
+					rowData={rowData}
 					columnDefs={headerColumns}
 					defaultColDef={defaultColumnDefs}
 					animateRows={true}
 					pagination={true}
-					paginationPageSize={10}
 					tooltipHideDelay={500}
 					onGridReady={onGridReady}
 				/>

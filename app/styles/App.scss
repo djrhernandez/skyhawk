@@ -9,6 +9,7 @@
 @import 'Charts';
 @import 'Footer';
 @import 'Navbar';
+@import 'ProfileCard';
 @import 'Table';
 @import 'TextItem';
 @import 'Wrapper';
@@ -48,7 +49,7 @@ section {
 
 .dashboard {
 	flex: 1;
-	background: bg-gradient(180deg, #{$penn-red}, #{$brick-red});
+	background: bg-gradient(135deg, #{$penn-red}, #{$brick-red});
 	background-size: $background-size;
 }
 
@@ -101,7 +102,7 @@ section {
 }
 
 .error {
-	@include grid-layout(1fr);  
+	@include grid-layout(1fr);
 	background-color: $background-darkest;
 	border-radius: 5px;
 	color: red;

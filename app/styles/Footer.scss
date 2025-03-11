@@ -5,16 +5,16 @@
 	color: $font-color-light;
 	background-color: $background-darkest;
 	@include font-size(10px);
-  
+
 	a {
-	  color: grayscale(112, 1);
-	  font-weight: bold;
-	  text-decoration: underline;
-	  transition: color 0.3s ease-in-out;
-  
-	  &:hover {
-		color: $gold;
-	  }
+		color: grayscale(112, 1);
+		font-weight: bold;
+		text-decoration: underline;
+		transition: color 0.3s ease-in-out;
+		
+		&:hover {
+			color: $gold;
+		}
 	}
-  }
+}
   

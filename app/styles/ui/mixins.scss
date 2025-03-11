@@ -1,64 +1,23 @@
 /* ======== mixins ======== */
 
-/* --- calc --------------------------------------------------------------------- */
-@mixin calc($property, $expression) {
-  #{$property}: -moz-calc(#{$expression});
-  #{$property}: -webkit-calc(#{$expression});
-  #{$property}: calc(#{$expression});
-}
-  
-@mixin calc-important($property, $expression) {
-  #{$property}: -moz-calc(#{$expression}) !important;
-  #{$property}: -webkit-calc(#{$expression}) !important;
-  #{$property}: calc(#{$expression}) !important;
-}
-
-/* --- font-size -----------------------------------------------------------------
-Rem is similar to the em value; however, rem is relative to the parent element
-rather than what the font-size is set as within the scope of the <html> tag.
-It practically has all the benefits of em but you won't get issues with cascading 
-font sizing. The only bad part is the lack of support for rem units in IE8 and 
-below. Luckily, this mixin create a fallback to pixels when rem isn’t supported.
-Usage: 
-.some-component {
-  @include fontSize(12px);
-  ...
-}
-
-.some-component {
-  font-size: calculate-rem(12px);
-}
-*/
-@function calculate-rem($size) {
-  $remSize: $size / 16px;
-  @return $remSize * 1rem;
-}
-
-@mixin font-size($size) {
-  font-size: $size;
-}
-
-/* --- layouts -------------------------------------------------------------------
-These mixins help with code readability since it can get very disruptive when 
-implementing layout types like flexboxes and grids across many files.
+/* --- layouts ------------------------------------------------------------------------------
+These mixins help with code readability since it can get very disruptive when implementing 
+layout types like flexboxes and grids across many files.
 Usage:
 .some-component {
   @include flex-center;
   margin: auto;
   ...
 }
-
-OR
-
 .some-component {
   @include grid-layout(repeat(3, 1fr), auto, 50px);
   margin: auto;
   ...
 }
 */
-@mixin flex-container($justify, $direction, $align: normal) {
+@mixin flex-container($justify, $direction, $align: normal, $wrap: wrap) {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: $wrap;
   flex-direction: $direction;
   justify-content: $justify;
 
@@ -80,11 +39,10 @@ OR
   grid-gap: $gap;
 }
 
-/* --- breakpoints ---------------------------------------------------------------
-When Sass 3.2 was released some time ago, they made it possible to define names 
-for media queries, which makes the usage of them a lot cleaner. Instead of calling 
-them @media (min-width: 600px) we can give them more semantic names like 
-“breakpoint-large” or “breakpoint-really-large-screen-projector”.
+/* --- breakpoints --------------------------------------------------------------------------
+With the release of Sass 3.2, it was possible to define names for media queries, which helped 
+clean up how they were used. Instead of calling them @media (min-width: 600px), we give them 
+more semantic names like “breakpoint-large” or “breakpoint-8xl-projector.”
 Usage:
 .sidebar {
   width: 60%;
@@ -96,58 +54,59 @@ Usage:
     margin: 0;
   }
 }
-
-bp-xl-large - 1280px+
-bp-large    - 960px+
-bp-medium   - 640px+
-bp-small    - 480px+
-bp-mobile   - 320px+
 */
 
-// 80em * 16
-@mixin bp-xlarge {
-  @media only screen and (min-width: 1280px) { 
-    @content;
-  }
+@mixin bp-xlarge { // 80em * 16
+  @media only screen and (min-width: 1280px) { @content; }
 }
 
-// 60em * 16
-@mixin bp-large {
-  @media only screen and (min-width: 960px) {
-    @content;
-  }
+@mixin bp-large { // 60em * 16
+  @media only screen and (min-width: 960px) { @content; }
 }
 
-// 40em * 16
-@mixin bp-medium {
-  @media only screen and (min-width: 640px) {
-    @content;
-  }
+@mixin bp-medium { // 40em * 16
+  @media only screen and (min-width: 640px) { @content; }
 }
 
-// 30em * 16
-@mixin bp-small {
-  @media only screen and (min-width: 480px) {
-    @content;
-  }
+@mixin bp-small { // 30em * 16
+  @media only screen and (min-width: 480px) { @content; }
 }
 
-// 20em * 16
-@mixin bp-mobile {
-  @media only screen and (min-width: 320px) {
-    @content;
-  }
+@mixin bp-mobile { // 20em * 16
+  @media only screen and (min-width: 320px) { @content; }
 }
 
-/* --- animations ----------------------------------------------------------------
-Animations are always a pain to create especially when dealing with vendor prefixes.
-But with the help of this mixin it will boil down to just a few lines of code.
+/* --- font-size ----------------------------------------------------------------------------
+Rem is similar to the em value. However, rem is relative to the parent element rather than the 
+font-size set for the <html> tag. It has all the benefits of em but you won't get issues with 
+cascading font sizing. The pitfall is the lack of support for rem units in IE8 and below. 
+This mixin creates a fallback to pixels when rem isn’t supported.
+Usage: 
+.some-component {
+  @include fontSize(12px);
+  ...
+}
+.some-component {
+  font-size: calculate-rem(12px);
+}
+*/
+@function calculate-rem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+}
+
+/* --- animations ---------------------------------------------------------------------------
+Animations will always be a pain to create especially when dealing with things like vendor 
+prefixes. But with the help of this mixin it will boil down to just a few lines of code.
 Usage:
 @include keyframes(slide-down) {
   0% { opacity: 1; }
   90% { opacity: 0; }
 }
-
 .element {
   width: 100px;
   height: 100px;
@@ -156,21 +115,11 @@ Usage:
 }
 */
 @mixin keyframes($animation-name) {
-  @-webkit-keyframes #{$animation-name} {
-    @content;
-  }
-  @-moz-keyframes #{$animation-name} {
-    @content;
-  }
-  @-ms-keyframes #{$animation-name} {
-    @content;
-  }
-  @-o-keyframes #{$animation-name} {
-    @content;
-  }
-  @keyframes #{$animation-name} {
-    @content;
-  }
+  @-webkit-keyframes #{$animation-name} { @content; }
+  @-moz-keyframes #{$animation-name} { @content; }
+  @-ms-keyframes #{$animation-name} { @content; }
+  @-o-keyframes #{$animation-name} { @content; }
+  @keyframes #{$animation-name} { @content; }
 }
 
 @mixin animation($str) {
@@ -181,14 +130,13 @@ Usage:
   animation: #{$str};
 }
 
-/* --- transitions ---------------------------------------------------------------
-Along with animations, transitions can also make code bloated which can hurt the 
-readability. But this can also solved by using a mixin.
+/* --- transitions --------------------------------------------------------------------------
+Same issue with animations - transitions can also make code bloated which can hurt 
+the readability. But this can also solved by using a mixin.
 Usage:
   a {
       color: gray;
       @include transition(color .3s ease);
-
       &:hover {
         color: black;
       }
@@ -218,17 +166,31 @@ Usage:
   transform: $args;
 }
 
-/* --- cross browser opacity -----------------------------------------------------
-This mixin ensures cross browser opacity all the way down to Internet Explorer 5. 
-However, you may have a lot bigger problems if you have to optimize for things like
-opacity for IE5.
+/* --- cross browser opacity ----------------------------------------------------------------
+This mixin ensures cross browser opacity all the way down to Internet Explorer 5. However, 
+you may have a lot bigger problems if you have to optimize for things like opacity for IE5.
 Usage:
   .faded-text {
-      @include opacity(0.8);
+    @include opacity(0.8);
   }
 */
 @mixin opacity($opacity) {
   opacity: $opacity;
   $opacity-ie: $opacity * 100;
   filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/* --- calc ---------------------------------------------------------------------------------
+  (WIP) Need to explain this mixin is higher detail.
+*/
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin calc-important($property, $expression) {
+  #{$property}: -moz-calc(#{$expression}) !important;
+  #{$property}: -webkit-calc(#{$expression}) !important;
+  #{$property}: calc(#{$expression}) !important;
 }

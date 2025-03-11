@@ -11,7 +11,50 @@
 	@return linear-gradient($deg, $colors);
 }
 
-/* Colors */
+/*	Color Scheme:
+	Dominant Color for:
+		Logos, Menu Tabs, Action/General Buttons,
+		Highlighted Primary Info, Title/Headlines, General Buttons
+
+	Accent Colors for:
+		Current Menu Tab, Subtitles,Highlighted Secondary Info
+*/
+
+/* B/W Shades */
+/* 	From coolors.co <WIP>
+	Link: https://coolors.co/visualizer/f8f9fa-e9ecef-dee2e6-ced4da-adb5bd-6c757d-495057-343a40-212529
+*/
+// $white: {
+// 	$1: #f8f9fa,
+// 	$2: #e9ecef,
+// 	$3: #dee2e6,
+// 	$4: #ced4da,
+// 	$5: #adb5bd
+// }
+// $black: {
+// 	$1: #6c757d,
+// 	$2: #495057,
+// 	$3: #343a40,
+// 	$4: #212529
+// }
+
+/* From Legacy Portfolio */
+$black: #111; // Primary div color
+$jet: #333;
+$theme-active-gray: #323232;
+$mud: #303037;
+$devil-number: #666;
+$lucky-number: #777;
+$pewter: #8EA8C3;
+$light-gray: #888;
+$theme-gray: #828282;
+$dim: #B7B0A8;
+$silver: #C0C0C0; // Base color for panels
+$platinum: #DCDCDC; // For source code snippets
+$azure: #E8EEF3;
+$ivory: #FFFFF0;
+$white: #fff;
+
 // Rich Reds
 $penn-red: #960200;
 $brick-red: #A52A2A;
@@ -22,6 +65,7 @@ $caramel: #D37D34;
 $tangerine: #FFA07A;
 
 // Golden Tones
+$yellow: #DBB43D;
 $gold: #FFD700;
 $bronze: #CD7F32;
 
@@ -36,12 +80,12 @@ $accent-red: #FF6347;
 /* Background/Theme */
 $background-size: 100% 100%;
 $background-gradient: bg-gradient(180deg);
-$background-light: #fff;
-$background-mid: #888;
-$background-dark: #333;
-$background-darkest: #111;
-$theme-color: #828282;
-$theme-color-active-txt: #323232;
+$background-light: $white;
+$background-mid: $light-gray;
+$background-dark: $jet;
+$background-darkest: $black;
+$theme-color: $theme-gray;
+$theme-color-active-txt: $theme-active-gray;
 $theme-active-brightness: 0;
 
 /* Layouts */
@@ -52,9 +96,9 @@ $full-space: 40px;
 $half-space: 20px;
 
 /* Font Colors/Sizing */
-$font-color-dark: #333;
-$font-color-mid: #666;
-$font-color-light: #fff;
+$font-color-dark: $jet;
+$font-color-mid: $devil-number;
+$font-color-light: $white;
 $font-size--xs: 10px;
 $font-size--sm: 12px;
 $font-size--md: 16px;
@@ -63,20 +107,20 @@ $font-size--xl: 32px;
 
 /* Navbar */
 $navbar-bg-color: grayscale(255, 1);
-$navbar-title-color: #333;
-$navbar-logo-bg-color: #333;
+$navbar-title-color: $jet;
+$navbar-logo-bg-color: $jet;
 
 /* Main Menu */
 $menuHideDur: .25s;
 $menuShowDur: .5s;
-$menu-btn-off-color: #666666;
-$menu-btn-on-color: #777;
+$menu-btn-off-color: $devil-number;
+$menu-btn-on-color: $lucky-number;
 
 /* Buttons */
 $btn-transition-dur: .25s;
 
 /* App Loader */
-$app-loader-title-color: #fff;
+$app-loader-title-color: $white;
 $app-loader-message-color: grayscale(150, 1);
 $app-loader-bg-color: grayscale(0, .9);
 

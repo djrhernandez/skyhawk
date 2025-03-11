@@ -36,7 +36,7 @@ export const NavBar = (props) => {
 
 	return (
 		<div className={`navbar ${isMobile ? 'sidebar' : 'header'}`}>
-			<div className={`navbar-home ${isMobile ? 'mobile js-scroll-trigger' : ''}`}>
+			<div className={`navbar-home ${isMobile ? 'mobile' : ''}`}>
 				<a className='nav-logo' href='/'>
 					<div className='graphic'>
 						<Image
@@ -75,6 +75,14 @@ export const NavBar = (props) => {
 			
 			{ visible && (
 				<div className='container' id='responsive-navbar'>
+					<div className='nav-item'>
+						<ul>
+							<li>
+								<a className='nav-link' href='portfolio'>Portfolio</a>
+							</li>
+						</ul>
+					</div>
+
 					<div className='nav-item'>
 						<ul>
 							<li>

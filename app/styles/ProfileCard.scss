@@ -1,0 +1,94 @@
+.profile {
+	@include grid-layout(6fr 8fr, 1fr, 20px);
+	color: $black;
+	margin-bottom: 3rem;
+
+	.profile-card {
+		@include grid-layout(2fr 4fr);
+		background: $background-light;
+		border-radius: $border-radius;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+		transition: box-shadow 0.3s ease-in-out;
+		padding: 0.75rem;
+
+		.header {
+			align-content: center;
+
+			img {
+				border-radius: 50%;
+			}
+		}
+
+		.body {
+			height: 100%;
+			padding-left: 1.5rem;
+			align-content: center;
+
+			.name {
+				font-size: 18px;
+				padding-bottom: 0.5rem;
+			}
+
+			.details {
+				font-size: 14px;
+				color: $devil-number;
+				padding-bottom: 1rem;
+			}
+
+			.occupations {
+				font-size: 14px;
+			}
+		}
+	}
+
+	.card {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: start;
+		overflow: hidden;
+		border: 1px solid $devil-number;
+
+		&_title {
+			padding: 0.5rem;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+
+		table {
+			width: 100%;
+			padding: 0px 10px;
+		}
+
+		&_body {
+			border: 1px solid orange;
+		}
+
+		&_row {
+			width: 100%;
+		}
+
+		&_column {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			gap: 0.5rem;
+			margin-top: 1rem;
+		}
+
+		&_text {
+			border: 1px solid orange;
+			margin: 5px 10px;
+		}
+	}
+
+	ul {
+		list-style: circle;
+		padding-left: 1rem;
+	}
+
+	li {
+		margin-bottom: 0.5rem;
+	}
+}

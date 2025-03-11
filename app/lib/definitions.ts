@@ -1,7 +1,9 @@
-// This file contains type definitions for your data.
-// It describes the shape of the data, and what data type each property should accept.
-// For simplicity of teaching, we're manually defining these types.
-// However, these types are generated automatically if you're using an ORM such as Prisma.
+/*
+    This file contains type definitions for your data.
+    It describes the shape of the data, and what data type each property should accept.
+    For simplicity of teaching, we're manually defining these types.
+    However, these types are generated automatically if you're using an ORM such as Prisma.
+*/
 export const rechartGraphColors = ['#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 
 export const rechartsLayout = {
@@ -32,11 +34,12 @@ export const propertyColumnsDetailed = [
     {
         headerName: 'ID',
         field: 'parid',
-        width: 100,
+        width: 75,
     },
     {
         headerName: 'Owner',
         field: 'owner_name',
+        width: 150,
         filter: true,
         wrapText: true,
     },
@@ -46,13 +49,12 @@ export const propertyColumnsDetailed = [
             { 
                 headerName: 'Borough', 
                 field: 'borough',
-                width: 125
+                width: 100
             },
             { 
                 headerName: 'Code', 
                 field: 'borocode',
-                width: 125,
-                columnGroupShow: 'open',
+                width: 75,
             }
         ]
     },
@@ -61,22 +63,22 @@ export const propertyColumnsDetailed = [
         children: [
             {
                 headerName: 'Street Address',
-                valueGetter: (params: { data: { street_num: string; street_name: string; }; }) => {
-                    return params.data.street_num + ' ' + params.data.street_name;
-                }
+                field: 'street_address',
+                width: 125,
+                columnGroupShow: 'open'
             },
             { 
                 headerName: 'Postcode', 
                 field: 'postcode',
-                width: 100,
+                width: 75,
                 columnGroupShow: 'open'
             },
             {
                 headerName: 'Lat/Long',
                 columnGroupShow: 'open',
-                width: 150,
+                width: 140,
                 valueGetter: (params: { data: { latitude: any; longitude: any; }; }) => {
-                  return [params.data.latitude, params.data.longitude];
+                  return [params.data.latitude + '/' + params.data.longitude];
                 }
             },
         ]
@@ -91,7 +93,7 @@ export const propertyColumnsDetailed = [
             },
             {
                 headerName: 'BIN #',
-                field: 'bin',
+                field: 'bldg_id_number',
                 headerTooltip: 'Building Identification Number',
                 columnGroupShow: 'open'
             },
@@ -113,12 +115,12 @@ export const propertyColumnsDetailed = [
             },
             {
                 headerName: 'Tax Year',
-                field: 'taxyear',
+                field: 'tax_year',
                 columnGroupShow: 'open'
             },
             {
                 headerName: 'Tax Class',
-                field: 'taxclass',
+                field: 'tax_class',
                 columnGroupShow: 'open'
             },
         ]
@@ -142,14 +144,14 @@ export const propertyColumnsDetailed = [
                 columnGroupShow: 'open'
             },
             {
-                headerName: 'NTA',
-                field: 'nta',
+                headerName: 'NTA Name',
+                field: 'nta_name',
                 headerTooltip: 'Neighborhood Tabulation Area (meant for census)',
                 columnGroupShow: 'open'
             },
             {
                 headerName: 'NTA Code',
-                field: 'nta_code2',
+                field: 'nta_code',
                 headerTooltip: 'Code associated with the NTA a property possesses',
                 columnGroupShow: 'open'
             },
