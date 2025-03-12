@@ -1,5 +1,7 @@
 const path = require('path')
 
+const TOPFLIGHT_URL = process.env.NEXT_PUBLIC_TOPFLIGHT_URL || 'https://topflight.onrender.com'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async headers() {
@@ -20,7 +22,7 @@ const nextConfig = {
         return [
             {
                 source: '/graphql',
-                destination: `${process.env.NEXT_PUBLIC_TOPFLIGHT_URL}/graphql`,
+                destination: `${TOPFLIGHT_URL}/graphql`,
             }
         ]
     },
