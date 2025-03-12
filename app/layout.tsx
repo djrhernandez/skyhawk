@@ -26,9 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<NavBar />
 						<div className='dashboard'>
 							{children}
+							<Analytics />	
 						</div>
 					</Providers>
-					<Analytics />
 				</div>
 			</body>
 			<GoogleTagManager gtmId='GTM-MPN4CZ6T' />

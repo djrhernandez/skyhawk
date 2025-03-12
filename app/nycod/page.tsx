@@ -73,6 +73,7 @@ export default function Page() {
 
 	return (
 		<div className='nycod'>
+			{pageState === searchStates.NOT_STARTED && renderNotStarted(apiData, pageState)}
 			{pageState === searchStates.SUCCESS && renderSuccess(apiData, pageState)}
 			{pageState === searchStates.LOADING && renderLoading(apiData, pageState)}
 			{pageState === searchStates.FAILURE && renderError(errors, pageState)}
@@ -115,5 +116,17 @@ const renderError = (error, pageState) => (
 	<div className='error'>
 		<div className='header'>{`${capitalize(pageState)}!`}</div>
 		<div className='body'>{`Data: ${error}`}</div>
+	</div>
+)
+
+const renderNotStarted = (data, pageState) => (
+	<div className='not-started'>
+		<div className='header'>{`${capitalize(pageState)}...`}</div>
+		{ data && (
+			<div className='body'>{`Data: ${JSON.stringify(data)}`}</div>
+		)}
+		{ data && (
+			<div className='body'>{`No data available :(`}</div>
+		)}
 	</div>
 )

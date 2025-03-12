@@ -21,6 +21,10 @@ const nextConfig = {
     async rewrites() {
         return [
             {
+                source: '/:path*',
+                destination: `${TOPFLIGHT_URL}/:path*`,
+            },
+            {
                 source: '/graphql',
                 destination: `${TOPFLIGHT_URL}/graphql`,
             }
