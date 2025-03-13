@@ -12,7 +12,7 @@ ModuleRegistry.registerModules([ AllCommunityModule ]);
 provideGlobalGridOptions({ theme: 'legacy'})
 
 export const Table = ({ data, pageState }: any, props: any) => {
-	const rowData = data
+	const rowData = data && data.hotels
 	const gridRef = useRef<AgGridReact>(null)
 	const [pageWidth, pageHeight] = useWindowSize()
 	const [headerColumns, setHeaderColumns] = useState(propertyColumns)
@@ -28,9 +28,6 @@ export const Table = ({ data, pageState }: any, props: any) => {
 
 	// 	gridRef.current.api.setGridOption('paginationPageSize', Number(value))
 	// }, [])
-
-	console.log({rowData})
-
 	useEffect(() => {
 		if (!!pageHeight && pageWidth < 960) {
 			defaultColumnDefs.suppressMovable = true

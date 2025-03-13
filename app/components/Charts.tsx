@@ -23,14 +23,21 @@ export const Charts = ({ data, pageState }: any, props: any) => {
 
 const renderGraphs = (pageState: string, data: any, props: any) => {
 	const layout = rechartsLayout
-	const boroughlist = data && data.reduce((acc: { [x: string]: number }, item: { parid: any; borough: string }) => {
-		if (!item.parid || !item.borough || ['1', '2', '3'].includes(item.borough)) return acc
+	const boroughlist = data && data.hotels.reduce((acc: { [x: string]: number }, item: { parid: any; borough: string }) => {
+		let unknown = ['1', '2', '3', '4', '5'].includes(item.borough)
+		
+		if (!item.parid || !item.borough || unknown) return acc
+
 		if (!acc[item.borough]) acc[item.borough] = 0
 		acc[item.borough] += 1
+
+		if (!acc['Unknown']) acc['Unknown'] = 
+		acc['Unknown'] += unknown ? 1 : 0
+
 		return acc
 	}, {})
 
-	const buildingList = data && data.reduce((acc: { [x: string]: number }, item: { parid: any; bldg_class: any }) => {
+	const buildingList = data && data.hotels.reduce((acc: { [x: string]: number }, item: { parid: any; bldg_class: any }) => {
 		if (!item.parid || !item.bldg_class) return acc
 		if (!acc[item.bldg_class]) acc[item.bldg_class] = 0
 		acc[item.bldg_class] += 1

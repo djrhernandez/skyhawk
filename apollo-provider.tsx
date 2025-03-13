@@ -11,16 +11,12 @@ import { apiUrl } from "./app/lib/utils";
 import { error } from 'console';
 
 const httpLink = createHttpLink({
+  // uri: 'http://127.0.0.1:5000/graphql', // For Dev Purpose
   uri: 'https://topflight.onrender.com/graphql',
   credentials: 'include', // can also be 'same-origin' depending on the setup
-
-  // [TODO] TEST TOMORRROW FOR CORS ISSUES (03/06/2025)
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET, POST',
+    'Accept': '*/*',
   }
 })
 

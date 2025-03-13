@@ -44,27 +44,12 @@ export const propertyColumnsDetailed = [
         wrapText: true,
     },
     {
-        headerName: 'Borough Info',
-        children: [
-            { 
-                headerName: 'Borough', 
-                field: 'borough',
-                width: 100
-            },
-            { 
-                headerName: 'Code', 
-                field: 'borocode',
-                width: 75,
-            }
-        ]
-    },
-    {
         headerName: 'Location Info',
         children: [
             {
                 headerName: 'Street Address',
                 field: 'street_address',
-                width: 125,
+                width: 150,
                 columnGroupShow: 'open'
             },
             { 
@@ -76,7 +61,7 @@ export const propertyColumnsDetailed = [
             {
                 headerName: 'Lat/Long',
                 columnGroupShow: 'open',
-                width: 140,
+                width: 125,
                 valueGetter: (params: { data: { latitude: any; longitude: any; }; }) => {
                   return [params.data.latitude + '/' + params.data.longitude];
                 }
@@ -84,18 +69,34 @@ export const propertyColumnsDetailed = [
         ]
     },
     {
+        headerName: 'Borough Info',
+        children: [
+            { 
+                headerName: 'Borough', 
+                field: 'borough',
+                width: 75
+            },
+            { 
+                headerName: 'Code', 
+                field: 'borocode',
+                width: 75,
+            }
+        ]
+    },
+    {
         headerName: 'Additional Info',
         children: [
             {
+                width: 100,
                 headerName: 'Building Class',
                 field: 'bldg_class',
                 headerTooltip: 'Building Classification (ie Luxury/Boutique Hotel, Office/Retail Space, etc.)'
             },
             {
+                width: 100,
                 headerName: 'BIN #',
                 field: 'bldg_id_number',
-                headerTooltip: 'Building Identification Number',
-                columnGroupShow: 'open'
+                headerTooltip: 'Building Identification Number'
             },
             {
                 headerName: 'Block #',

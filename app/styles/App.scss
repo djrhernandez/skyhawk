@@ -88,16 +88,18 @@ section {
 	border-radius: 5px;
 	color: orange;
 
-	margin: 1rem;
 	text-align: center;
 	word-wrap: break-word;
 
 	.header {
 		margin: 1rem;
+		font-size: 24px;
+		font-weight: bold;
 	}
 
 	.body {
-		margin: 0.5rem;
+		margin: 1rem;
+		font-size: 18px;
 	}
 }
 
@@ -113,9 +115,33 @@ section {
 
 	.header {
 		margin: 1rem;
+		font-size: 24px;
+		font-weight: bold;
 	}
 
 	.body {
-		margin: 0.5rem;
+		margin: 1rem;
+		font-size: 18px;
+	}
+}
+
+.not-started {
+	@include grid-layout(1fr);
+	background-color: $background-darkest;
+	border-radius: 5px;
+	color: orange;
+
+	text-align: center;
+	word-wrap: break-word;
+
+	.header {
+		margin: 1rem;
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.body {
+		margin: 1rem;
+		font-size: 18px;
 	}
 }
