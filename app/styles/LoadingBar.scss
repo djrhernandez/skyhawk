@@ -1,0 +1,21 @@
+.loading-bar {
+	@include flex-container(center, row);
+	width: 100%;
+	padding-bottom: 1rem;
+
+	.progress-wrapper {
+		width: 75%;
+		height: 0.75rem;
+		background-color: $ivory;
+		border-radius: 10px;
+		border: 1px solid $ivory;
+	}
+
+	.progress {
+		height: 100%;
+		border-radius: 10px;
+		background-color: $lighter-green;
+		transition-timing-function: ease-in-out;
+		transition: width 2s, background-color 4s;
+	}
+}

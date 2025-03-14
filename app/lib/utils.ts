@@ -1,15 +1,13 @@
 // @flow
 import React from 'react'
 
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
-export function cs(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs))
-}
-
 export let DARK_MODE = false
+export const TV_MODE = process.env.REACT_APP_TV_MODE === 'true'
+export const apiUrl = process.env.NEXT_PUBLIC_TOPFLIGHT_URL
+
 const DARK_MODE_KEY = 'dark_mode_setting'
+const PREFERENCES_KEY = 'skyhawk-nyc-prefs-v0.1'
+
 if (typeof window !== 'undefined') {
 	DARK_MODE = window.localStorage.getItem(DARK_MODE_KEY) === 'true' || (window.localStorage.getItem(DARK_MODE_KEY) !== 'false' && window.matchMedia('(prefers-color-scheme: dark)').matches)
 }
@@ -19,9 +17,9 @@ export const setDarkMode = (darkMode: any) => {
   window.location.reload()
 }
 
-export const TV_MODE = process.env.REACT_APP_TV_MODE === 'true'
-
-export const apiUrl = process.env.NEXT_PUBLIC_TOPFLIGHT_URL
+export const setPreferences = (prefs) => {
+  localStorage.setItem(PREFERENCES_KEY, JSON.stringify(prefs))
+}
 
 export const hex2rgba = (hex, alpha = 1) => {
 	const [r, g, b] = hex.match(/\w\w/g).map((x: string) => parseInt(x, 16));

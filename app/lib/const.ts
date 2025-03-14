@@ -31,6 +31,21 @@ query fetchAllHotels {
 }
 `
 
+export const GET_PROPERTIES = gql`
+query fetchHotelsNearby($latitude: Float!, $longitude: Float!, $radius: Float!) {
+	hotelsNearLocation(latitude: $latitude, longitude: $longitude, radius: $radius) {
+		parid
+		borough
+		borocode
+		latitude
+		longitude
+		owner_name
+		postcode
+		street_address
+	}
+}
+`
+
 /* Portfolio */
 export const PORTFOLIO = {
 	"about": "Born and raised in Bakersfield, my brother and I often enjoyed visiting our father in Los Angeles because our mother liked to dress us up in identical clothes and even the same haircut style." +
