@@ -39,7 +39,7 @@
 // }
 
 /* From Legacy Portfolio */
-$black: #111; // Primary div color
+$black: #111; 					// Primary div color
 $jet: #333;
 $theme-active-gray: #323232;
 $mud: #303037;
@@ -49,33 +49,49 @@ $pewter: #8EA8C3;
 $light-gray: #888;
 $theme-gray: #828282;
 $dim: #B7B0A8;
-$silver: #C0C0C0; // Base color for panels
-$platinum: #DCDCDC; // For source code snippets
+$silver: #C0C0C0; 				// Base color for panels
+$platinum: #DCDCDC; 			// For source code snippets
 $azure: #E8EEF3;
 $ivory: #FFFFF0;
 $white: #fff;
 
 // Rich Reds
-$penn-red: #960200;
-$brick-red: #A52A2A;
-$chili-red: #CB462B;
+$penn-red: #960200;			// Penn Red
+$brick-red: #A52A2A;			// Brick Red
+$chili-red: #CB462B;			// Chili Red
+$accent-red: #FF6347; 			// Tomato
 
-// Warm Oranges
-$caramel: #D37D34;
-$tangerine: #FFA07A;
+// Oranges
+$light-orange: #FFA07A; 		// Light Salmon
+$orange: #FFA500; 				// Web Orange
+$dark-orange: #FF8C00; 		// Dark Orange (Web)
 
-// Golden Tones
+// Yellows/Golden Tones
+$light-yellow: #FFD700;
 $yellow: #DBB43D;
-$gold: #FFD700;
+$dark-yellow: #FFDF00;
+$darker-yellow: #FFC15E; 			// Xanthous
+
 $bronze: #CD7F32;
+$gold: #FFD400;
 
-// Soft Oranges
-$peach: #FFDA89;
-$coral: #FF7F50;
+// Greens
+$lighter-green: #8AEA92; 		// Light Green
+$light-green: #29BF12; 		// Kelly Green
+$green: #00A676; 				// Jade
+$dark-green: #386641; 			// Dark Green
+$darker-green: #012622; 		// Pine Green
 
-// Accent Colors
-$accent-orange: #FF8C00;
-$accent-red: #FF6347;
+// Blues
+$blue-gray: #6699CC; 			// Blue Gray
+$lighter-blue: #9CFFFA; 		// Ice Blue
+$light-blue: #3C91E6; 			// Tufts Blue 
+$blue: #083D77; 				// Yale Blue
+$dark-blue: #0B3954; 			// Prussian Blue
+
+// Purples
+$violet: #5B507A; 				// Ultra Violet
+
 
 /* Background/Theme */
 $background-size: 100% 100%;

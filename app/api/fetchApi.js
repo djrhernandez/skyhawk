@@ -4,29 +4,28 @@ const LOCALHOST_URL = process.env.NEXT_PUBLIC_LOCALHOST_URL
 
 const HEADERS = {
 	'Accept': 'application/json',
+	'Allow-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Credentials': true,
 	'Content-Type': 'application/json; charset=utf-8',
 }
 
 const buildUrl = (src, path, params = {}) => {
 	let endpoint
 	switch (src) {
-		case 'cloud':
-			endpoint = 'WIP'
-			break
 		case 'dota':
 			endpoint = 'WIP'
 			break
 		case 'localhost':
 			endpoint = LOCALHOST_URL
 			break
-		case 'misc':
-			endpoint = 'WIP'
-			break
 		case 'nycod':
 			endpoint = NYCOD_API_URL
 			break
 		case 'topflight':
 			endpoint = API_BASE_URL
+			break
+		case 'winston':
+			endpoint = API_BASE_URL + '/winston'
 			break
 		default:
 			endpoint = API_BASE_URL
@@ -35,9 +34,6 @@ const buildUrl = (src, path, params = {}) => {
 	const pathname = path && path.startsWith('/') ? `${endpoint}${path}` : `${endpoint}/${path}`
 	const url = pathname && new URL(pathname)
 	Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value))
-
-	console.log('buildUrl: ', { url, pathname })
-	console.log('')
 
 	return url.toString()
 }
@@ -52,17 +48,10 @@ const handleResponse = async (response) => {
 
 export async function fetchApi(src = null, path, params = {}, method = 'GET') {
 	const url = buildUrl(src, path, params)
-	let headers = src == 'nycod' ? 
-	HEADERS : 
-	HEADERS + { 
-		'Allow-Control-Allow-Origin': '*',
-		'Access-Control-Allow-Credentials': true,
-	}
 
-	console.log('Fetch API: ', { method, url, src, path, params })
 	const response = await fetch(url, {
 		method: method,
-		headers: headers
+		headers: HEADERS
 	})
 	return handleResponse(response);
 }

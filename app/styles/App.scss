@@ -8,6 +8,7 @@
 @import 'Card';
 @import 'Charts';
 @import 'Footer';
+@import 'LoadingBar';
 @import 'Navbar';
 @import 'ProfileCard';
 @import 'Table';
@@ -83,13 +84,18 @@ section {
 }
 
 .loading {
-	@include grid-layout(1fr);
-	background-color: $background-darkest;
-	border-radius: 5px;
-	color: orange;
-
-	text-align: center;
-	word-wrap: break-word;
+	@include flex-container(center, row);
+	
+	&-wrapper {
+		@include grid-layout(1fr);
+		width: 50%;
+		background-color: $background-darkest;
+		border-radius: 5px;
+		
+		color: orange;
+		text-align: center;
+		word-wrap: break-word;
+	}
 
 	.header {
 		margin: 1rem;
@@ -104,14 +110,18 @@ section {
 }
 
 .error {
-	@include grid-layout(1fr);
-	background-color: $background-darkest;
-	border-radius: 5px;
-	color: red;
+	@include flex-container(center, row);
 
-	margin: 1rem;
-	text-align: center;
-	word-wrap: break-word;
+	&-wrapper {
+		@include grid-layout(1fr);
+		background-color: $background-darkest;
+		border-radius: 5px;
+		color: red;
+	
+		margin: 1rem;
+		text-align: center;
+		word-wrap: break-word;
+	}
 
 	.header {
 		margin: 1rem;
@@ -126,13 +136,17 @@ section {
 }
 
 .not-started {
-	@include grid-layout(1fr);
-	background-color: $background-darkest;
-	border-radius: 5px;
-	color: orange;
+	@include flex-container(center, row);
 
-	text-align: center;
-	word-wrap: break-word;
+	&-wrapper {
+		@include grid-layout(1fr);
+		background-color: $background-darkest;
+		border-radius: 5px;
+		color: orange;
+
+		text-align: center;
+		word-wrap: break-word;
+	}
 
 	.header {
 		margin: 1rem;

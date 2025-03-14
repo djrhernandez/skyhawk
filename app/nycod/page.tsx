@@ -1,9 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
+
+import LoadingBar from '../components/LoadingBar'
 import { Charts } from '../components/Charts'
 import { Table } from '../components/Table'
 import { TextItem } from '../components/TextItem'
+import { Properties } from '../components/Properties'
 
 import { GET_HOTELS } from '../lib/const'
 import * as searchStates from '../lib/states'
@@ -11,6 +14,16 @@ import { capitalize, numberWithCommas } from '../lib/utils'
 
 export default function Page() {
 	const [pageState, setPageState] = useState(searchStates.NOT_STARTED)
+	const [prefs, setPrefs] = useState({})
+	const [filters, setFilters] = useState({
+		ownerName: '',
+		streetAddress: '',
+		postcode: 10000,
+		latitude: 0.0000,
+		longitude: 0.0000,
+		radius: 0.5,
+	})
+
 	const { loading, error, data } = useQuery(GET_HOTELS, { errorPolicy: 'all' })
 	
 	useEffect(() => {
@@ -21,8 +34,6 @@ export default function Page() {
 		} else {
 			setPageState(searchStates.FAILURE)
 		}
-		
-		console.log({ pageState, loading, error, data })
 	}, [loading, error, data])
 
 	return (
@@ -45,12 +56,17 @@ const renderSuccess = (pageState, data) => (
 		/>
 		
 		{ data && (<Charts data={data} pageState={pageState} />)}
+		
+		<Properties latitude={40.7128} longitude={-74.0060} radius={0.25} />
+
 		{ data && (<Table data={data} pageState={pageState} />)}
 
 		{ !data && (
 			<div className='error'>
-				<div className='header'>{`No Data Available!`}</div>
-				<div className='body'>{`Data: ${data}`}</div>
+				<div className='error-wrapper'>
+					<div className='header'>{`No Data Available!`}</div>
+					<div className='body'>{`Data: ${data}`}</div>
+				</div>
 			</div>
 		)}
 
@@ -59,32 +75,39 @@ const renderSuccess = (pageState, data) => (
 
 const renderLoading = (pageState, data) => (
 	<div className='loading'>
-		<div className='header'>{`${capitalize(pageState)}...`}</div>
-		{ data && (
+		<div className='loading-wrapper'>
+			<div className='header'>{`${capitalize(pageState)}...`}</div>
 			<div className='body'>
-				<span>{`${data.hotels && numberWithCommas(data.hotels.length)} Properties Found! Visualizing Data...`}</span>
+				<LoadingBar />
+				{ data && data.hotels && (
+					<span>
+						{`${numberWithCommas(data.hotels.length)} Properties Found! Visualizing Data...`}
+					</span>
+				)}
 			</div>
-		)}
+		</div>
 	</div>
 )
 
 const renderError = (pageState, data, error) => (
 	<div className='error'>
-		<div className='header'>{`${capitalize(pageState)}!`}</div>
-		<div className='body'>
-			Bad:{" "}
-			{error.graphQLErrors.map(({ message }, i) => (
-				<span key={i}>{message}</span>
-			))}
-			
-			{`Data: ${error}`}
+		<div className='error-wrapper'>
+			<div className='header'>{`${capitalize(pageState)}!`}</div>
+			<div className='body'>
+				{error.graphQLErrors.map(({ message }, i) => (
+					<span key={i}>{message}</span>
+				))}
+				{`Data: ${error}`}
+			</div>
 		</div>
 	</div>
 )
 
 const renderNotStarted = (pageState, data, loading, error) => (
 	<div className='not-started'>
-		<div className='header'>{`About to start...`}</div>
-		<div className='body'>{'Please wait for the data to load.'}</div>
+		<div className='not-started-wrapper'>
+			<div className='header'>{`About to start...`}</div>
+			<div className='body'>{'Please wait for the data to load.'}</div>
+		</div>
 	</div>
 )
