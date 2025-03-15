@@ -16,7 +16,10 @@ export const Properties = ({ latitude, longitude, radius }) => {
 		errorPolicy: "all",
 	})
 
-	const markers = data && data.hotelsNearLocation
+	const markers = data && data.hotelsNearLocation.map((prop) => ({
+		lat: prop.latitude,
+		lng: prop.longitude
+	}))
 
 	useEffect(() => {
 		if (loading) {
@@ -38,7 +41,7 @@ export const Properties = ({ latitude, longitude, radius }) => {
 }
 
 const renderSuccess = (latitude, longitude, markers) => (
-	<Map center={{ latitude, longitude }} markers={markers} />
+	<Map center={{ lat: latitude, lng: longitude }} markers={markers} />
 )
 
 const renderLoading = (pageState, data, radius) => (

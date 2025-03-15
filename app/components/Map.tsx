@@ -15,7 +15,7 @@ export const Map = ({ center, markers }) => {
 
 			if (window.innerWidth >= 640) {
 				setIsMobile(false)
-				setMapContainerStyle({ width: '100%', height: '250px' })
+				setMapContainerStyle({ width: '100%', height: '350px' })
 			}
 		}
 
@@ -30,11 +30,11 @@ export const Map = ({ center, markers }) => {
 	return (
 		<LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
 			<GoogleMap 
-			id='nycod-map' 
+			id='nycod-map'
 			zoom={15}
 			clickableIcons={true}
-			center={center} 
-			mapContainerStyle={mapContainerStyle} 
+			center={center}
+			mapContainerStyle={mapContainerStyle}
 			>
 				{markers.map((marker, index) => (
 					<Marker key={index} position={marker} />
