@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 
-export const Map = ({ center, markers }) => {
+export const Map = ({ data, center, markers }) => {
 	const [isMobile, setIsMobile] = useState(false)
 	const [mapContainerStyle, setMapContainerStyle] = useState({})
 

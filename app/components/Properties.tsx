@@ -33,15 +33,15 @@ export const Properties = ({ latitude, longitude, radius }) => {
 
 	return (
 		<div className="map-wrapper" style={{ marginBottom: '20px' }}>
-			{pageState === searchStates.SUCCESS && renderSuccess(latitude, longitude, markers)}
+			{pageState === searchStates.SUCCESS && renderSuccess(data, latitude, longitude, markers)}
 			{pageState === searchStates.LOADING && renderLoading(pageState, data, radius)}
 			{pageState === searchStates.FAILURE && renderError(pageState, data, error)}
 		</div>
 	)
 }
 
-const renderSuccess = (latitude, longitude, markers) => (
-	<Map center={{ lat: latitude, lng: longitude }} markers={markers} />
+const renderSuccess = (data, latitude, longitude, markers) => (
+	<Map data={data} center={{ lat: latitude, lng: longitude }} markers={markers} />
 )
 
 const renderLoading = (pageState, data, radius) => (
